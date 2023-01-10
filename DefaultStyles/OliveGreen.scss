@@ -1,0 +1,64 @@
+﻿$base-colour: rgba(76,88,68,255);
+
+$border-colour-top: #889180;
+$border-colour-left: #889180;
+$border-colour-bottom: #282e22;
+$border-colour-right: #282e22;
+
+
+$border-colour-top-inset: #282e22;
+$border-colour-left-inset: #282e22;
+$border-colour-bottom-inset: #889180;
+$border-colour-right-inset: #889180;
+
+
+$default-text-colour: #FFFFFF;
+$default-text-size: 13px;
+$default-text-font: "Tahoma";
+
+
+.Window {
+    color: $default-text-colour;
+    font-size: $default-text-size;
+    font-family: $default-text-font;
+    padding: 4px;
+    border-top: 1px solid $border-colour-top;
+    border-left: 1px solid $border-colour-left;
+    border-bottom: 1px solid $border-colour-bottom;
+    border-right: 1px solid $border-colour-right;
+    background-color: $base-colour;
+
+
+    .TitleBar {
+        .TitleIcon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .Control {
+            padding: 0;
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
+
+// Control Elements
+.Button {
+    padding: 5px;
+    height: 24px;
+    align-items: center;
+
+    background-color: $base-colour;
+    border-top: 1px solid $border-colour-top;
+    border-left: 1px solid $border-colour-left;
+    border-bottom: 1px solid $border-colour-bottom;
+    border-right: 1px solid $border-colour-right;
+
+    &:active {
+        border-top: 1px solid $border-colour-top-inset;
+        border-left: 1px solid $border-colour-left-inset;
+        border-bottom: 1px solid $border-colour-bottom-inset;
+        border-right: 1px solid $border-colour-right-inset;
+    }
+}
