@@ -1,5 +1,5 @@
-﻿@import "/styles/base.scss";
-@import "/styles/form.scss";
+﻿//@import "/styles/base.scss";
+//@import "/styles/form.scss";
 
 $base-colour: rgba(76,88,68,255);
 
@@ -73,6 +73,8 @@ $default-text-font: "Tahoma";
 
 // Tabs
 .TabContainer {
+    flex-direction: column;
+
     > .tabs {
 
         > .button {
@@ -89,6 +91,8 @@ $default-text-font: "Tahoma";
             top: 3px;
             margin-right: 1px;
             opacity: 1;
+            font-size: $default-text-size;
+            font-family: $default-text-font;
 
             &.active {
                 color: $default-text-colour-active;
@@ -106,6 +110,7 @@ $default-text-font: "Tahoma";
 
 
     > .sheets {
+        padding: 5px;
         z-index: -1;
         background-color: $base-colour;
         border-radius: 0px;
@@ -113,5 +118,213 @@ $default-text-font: "Tahoma";
         border-left: 1px solid $border-colour-left;
         border-bottom: 1px solid $border-colour-bottom;
         border-right: 1px solid $border-colour-right;
+        flex-direction: column;
+
+        tab {
+
+            div {
+                flex-grow: 0;
+                flex-direction: column;
+            }
+        }
+
+        > :not( .active ) {
+            display: none;
+        }
+    }
+}
+
+// Slider
+
+.slider {
+    flex-grow: 1; 
+    height: 16px;
+    align-items: center;
+    padding-right: 16px; 
+    margin: 0;
+    margin-bottom: 24px;
+
+    > .thumb {
+        z-index: 1;
+        background-color: $base-colour;
+        border-top: 1px solid $border-colour-top;
+        border-left: 1px solid $border-colour-left;
+        border-bottom: 1px solid $border-colour-bottom;
+        border-right: 1px solid $border-colour-right;
+        position: absolute;
+        width: 8px;
+        height: 16px;
+        border-radius: 0px;
+        box-shadow: 0px 0px 0px black;
+        transition: all 0s ease-out;
+
+        &:hover {
+            background-color: rgba(76,88,68,255);
+        }
+    }
+
+    &:active {
+        > .thumb {
+            background-color: rgba(76,88,68,255);
+        }
+    }
+
+    > .scalestepmin {
+        position: absolute;
+        z-index: -1;
+        flex-grow: 1;
+        top: 24px;
+        justify-content: flex-start;
+        color: #889180;
+        font-size: 9px;
+    }
+
+    > .scalestepmax {
+        position: absolute;
+        z-index: -1;
+        flex-grow: 1;
+        top: 24px;
+        right: 8px;
+        text-align: right;
+        font-size: 9px;
+        color: #889180;
+    }
+
+    > .scalesteps {
+        z-index: -1;
+        flex-grow: 1;
+        top: 16px;
+        left: 4px;
+        height: 10px;
+        justify-content: space-between;
+
+        > .step {
+            background-color: #7f8c7f;
+            width: 1px;
+            height: 5px;
+        }
+    }
+
+    > .track {
+        position: absolute;
+        left: 0px;
+        right: 16px;
+        height: 4px;
+        background-color: rgb(31, 31, 31);
+        border-radius: 0px;
+        border-bottom: 1px solid #889180;
+        border-right: 1px solid #889180;
+        border-top: 1px solid #282e22;
+        border-left: 1px solid #282e22;
+
+        > .inner {
+            border-radius: 0px;
+            background-color: rgb(31, 31, 31);
+            width: 50px;
+            height: 0px;
+            transition: all 0.2s ease-out;
+        }
+    }
+}
+
+
+.sliderentry {
+
+    > .slider {
+        flex-grow: 1;
+    }
+
+    > .textentry:not( .one.two ) {
+        align-items: center;
+        padding: 5px;
+        max-width: 48px;
+        min-width: 48px;
+        width: 48px;
+        height: 24px;
+        overflow: hidden;
+        margin-left: 10px;
+        border-bottom: 1px solid #889180;
+        border-right: 1px solid #889180;
+        border-top: 1px solid #282e22;
+        border-left: 1px solid #282e22;
+        background-color: #3e4637;
+        margin-left: 0px;
+        font-size: 13px;
+        //color: $primary-alt;
+    }
+}
+
+// Checkbox
+.checkbox {
+    min-width: 24px;
+    height: 16px;
+    margin-bottom: 6px;
+    cursor: pointer;
+
+    .checkpanel, iconpanel {
+        flex-shrink: 0;
+        width: 15px;
+        height: 15px;
+        border: 1px solid rgba(103,100,88,255);
+        border-radius: 1px;
+        margin-right: 8px;
+        color: white;
+
+        .checklabel {
+            transform: translate(-3 -5);
+            font-family: Webdings;
+            font-size: 22px;
+            color: transparent;
+        }
+    }
+
+    .label {
+        margin-right: 10px;
+        color: #cfd6ca;
+    }
+
+    > .checkmark {
+        padding: 1px;
+        font-size: 14px;
+        //border: 3px solid $primary;
+        border-radius: 2px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        color: transparent;
+        min-height: 15px;
+        margin-right: 10px;
+        pointer-events: none;
+        cursor: pointer;
+    }
+
+    &.checked {
+
+        .label {
+            margin-right: 10px;
+            color: #c4b550;
+        }
+
+        > .checkpanel, .iconpanel {
+            .checklabel {
+                font-family: Webdings;
+                font-size: 22px;
+                color: white;
+            }
+        }
+
+        > .checkmark {
+            //color: $primary-alt;
+            color: white;
+            background-color: transparent;
+        }
+    }
+
+    &:active {
+        color: gray;
+        transform: scale(1);
+    }
+
+    &:hover {
     }
 }
