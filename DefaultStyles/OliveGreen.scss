@@ -1,4 +1,7 @@
-﻿$base-colour: rgba(76,88,68,255);
+﻿@import "/styles/base.scss";
+@import "/styles/form.scss";
+
+$base-colour: rgba(76,88,68,255);
 
 $border-colour-top: #889180;
 $border-colour-left: #889180;
@@ -13,6 +16,7 @@ $border-colour-right-inset: #889180;
 
 
 $default-text-colour: #FFFFFF;
+$default-text-colour-active: #c4b550;
 $default-text-size: 13px;
 $default-text-font: "Tahoma";
 
@@ -43,7 +47,11 @@ $default-text-font: "Tahoma";
     }
 }
 
+// ------------------
 // Control Elements
+// ------------------
+
+// Button
 .Button {
     padding: 5px;
     height: 24px;
@@ -60,5 +68,50 @@ $default-text-font: "Tahoma";
         border-left: 1px solid $border-colour-left-inset;
         border-bottom: 1px solid $border-colour-bottom-inset;
         border-right: 1px solid $border-colour-right-inset;
+    }
+}
+
+// Tabs
+.TabContainer {
+    > .tabs {
+
+        > .button {
+            padding: 5px;
+            height: 25px;
+            align-items: center;
+            background-color: $base-colour;
+            border-top: 1px solid $border-colour-top;
+            border-left: 1px solid $border-colour-left;
+            border-bottom: 1px solid $border-colour-top;
+            border-right: 1px solid $border-colour-right;
+            min-width: 64px;
+            border-radius: 0px;
+            top: 3px;
+            margin-right: 1px;
+            opacity: 1;
+
+            &.active {
+                color: $default-text-colour-active;
+                top: 1px;
+                z-index: 10;
+                border-bottom: 0px;
+                height: 27px;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+
+    > .sheets {
+        z-index: -1;
+        background-color: $base-colour;
+        border-radius: 0px;
+        border-top: 1px solid $border-colour-top;
+        border-left: 1px solid $border-colour-left;
+        border-bottom: 1px solid $border-colour-bottom;
+        border-right: 1px solid $border-colour-right;
     }
 }
