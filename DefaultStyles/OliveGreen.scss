@@ -39,6 +39,11 @@ $default-text-font: "Tahoma";
             height: 16px;
             background-image: url("Code/XGUI/Resources/icon_steam.png");
             background-size: cover;
+            margin-top:4px;
+        }
+
+        .TitleLabel {
+            padding: 4px;
         }
 
         .Control {
