@@ -62,6 +62,7 @@ public partial class Window : Panel
 		TitleIcon.AddClass( "TitleIcon" );
 		TitleSpacer.AddClass( "TitleSpacer" );
 		ControlsClose.AddClass( "Control" );
+		ControlsClose.AddClass( "CloseButton" );
 
 		AddChild( TitleBar );
 		TitleBar.AddChild( TitleIcon );
