@@ -10,7 +10,6 @@ public class XGUIRootPanel : RootPanel
 		Style.PointerEvents = PointerEvents.All;
 		Style.Width = Length.Percent( 100 );
 		Style.Height = Length.Percent( 100 );
-		Style.BackgroundColor = Color.Gray;
 	}
 
 	public override void Tick()
