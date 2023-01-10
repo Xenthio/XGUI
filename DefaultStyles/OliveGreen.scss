@@ -37,6 +37,8 @@ $default-text-font: "Tahoma";
         .TitleIcon {
             width: 16px;
             height: 16px;
+            background-image: url("Code/XGUI/Resources/icon_steam.png");
+            background-size: cover;
         }
 
         .Control {
@@ -44,11 +46,12 @@ $default-text-font: "Tahoma";
             width: 18px;
             height: 18px;
         }
+
         .CloseButton {
             background-image: url("Code/XGUI/Resources/icon_close.png");
-            background-repeat:no-repeat;
+            background-repeat: no-repeat;
             background-position: right center;
-            color:rgba(0,0,0,0);
+            color: rgba(0,0,0,0);
         }
     }
 }
