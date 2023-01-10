@@ -19,7 +19,7 @@
 <root class="Window">
 	<div class="TitleBar" @ref=TitleBar>
 		<div class="TitleIcon" @ref=TitleIcon></div>
-		<div>@WindowTitle</div>
+		<div>@Title</div>
 		<div class="TitleSpacer"></div>
 		<button class="Control" @ref=ControlsClose>X</button>
 	</div>
@@ -30,12 +30,12 @@
 
 	public Panel TitleBar { get; set; }
 
-	public Vector2 WindowPosition;
-	public int WindowZIndex;
+	public Vector2 Position;
+	public int ZIndex;
 
-	public string WindowTitle;
-	public bool WindowControls;
-	public bool WindowResizable;
+	public string Title;
+	public bool HasControls;
+	public bool IsResizable;
 
 	public Button ControlsClose { get; set; }
 	public Button ControlsMinimise { get; set; }
@@ -47,13 +47,19 @@
 	{
 		AddClass("Window");
 	}
+	public override void Tick()
+	{
+		base.Tick();
+		Style.Left = Position.x;
+		Style.Bottom = Position.y;
+	}
 	public override void SetProperty( string name, string value )
 	{
 		switch ( name )
 		{
 			case "title":
 				{
-					WindowTitle = value;
+					Title = value;
 					return;
 				}
 		}
