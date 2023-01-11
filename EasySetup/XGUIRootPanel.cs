@@ -7,7 +7,6 @@ public class XGUIRootPanel : RootPanel
 	public XGUIRootPanel()
 	{
 		Current = this;
-		Style.PointerEvents = PointerEvents.All;
 		Style.Width = Length.Percent( 100 );
 		Style.Height = Length.Percent( 100 );
 	}
