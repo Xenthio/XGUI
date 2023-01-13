@@ -64,10 +64,16 @@ $window-resize-icon: url("Code/XGUI/Resources/icon_resizer.png");
             background-position: right center;
             background-size: 16px;
             color: rgba(0,0,0,0);
+
+            &:active {
+                background-position-x: 3px;
+                background-position-y: 2px;
+            }
         }
     }
 
     .Resizer {
+        cursor: pointer;
         width: 16px;
         height: 16px;
         background-image: $window-resize-icon;
@@ -136,6 +142,7 @@ $window-resize-icon: url("Code/XGUI/Resources/icon_resizer.png");
             margin-right: 1px;
 
             &.active {
+                padding-top: 4px;
                 color: $default-text-colour-active;
                 // Offset up when selected
                 top: 1px;
