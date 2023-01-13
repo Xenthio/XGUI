@@ -22,8 +22,12 @@ $default-text-colour-active: #c4b550;
 $default-text-size: 13px;
 $default-text-font: "Tahoma";
 
+$window-title-icon: url("Code/XGUI/Resources/icon_steam.png");
+$window-close-button: url("Code/XGUI/Resources/icon_close.png");
+$window-resize-icon: url("Code/XGUI/Resources/icon_resizer.png");
 
 .Window {
+    overflow: hidden;
     color: $default-text-colour;
     font-size: $default-text-size;
     font-family: $default-text-font;
@@ -39,9 +43,9 @@ $default-text-font: "Tahoma";
         .TitleIcon {
             width: 16px;
             height: 16px;
-            background-image: url("Code/XGUI/Resources/icon_steam.png");
+            background-image: $window-title-icon;
             background-size: cover;
-            margin-top:4px;
+            margin-top: 4px;
         }
 
         .TitleLabel {
@@ -55,12 +59,20 @@ $default-text-font: "Tahoma";
         }
 
         .CloseButton {
-            background-image: url("Code/XGUI/Resources/icon_close.png");
+            background-image: $window-close-button;
             background-repeat: no-repeat;
             background-position: right center;
             background-size: 16px;
             color: rgba(0,0,0,0);
         }
+    }
+
+    .Resizer {
+        width: 16px;
+        height: 16px;
+        background-image: $window-resize-icon;
+        background-repeat: no-repeat;
+        margin-top: 4px;
     }
 }
 
@@ -73,7 +85,6 @@ $default-text-font: "Tahoma";
     padding: 5px;
     height: 24px;
     align-items: center;
-
     background-color: $base-colour;
     border-top: 1px solid $border-colour-top;
     border-left: 1px solid $border-colour-left;
@@ -81,11 +92,25 @@ $default-text-font: "Tahoma";
     border-right: 1px solid $border-colour-right;
 
     &:active {
+        padding-top: 6px;
+        padding-left: 6px;
         border-top: 1px solid $border-colour-top-inset;
         border-left: 1px solid $border-colour-left-inset;
         border-bottom: 1px solid $border-colour-bottom-inset;
         border-right: 1px solid $border-colour-right-inset;
     }
+}
+
+// TextEntry
+.TextEntry {
+    padding: 5px;
+    height: 24px;
+    align-items: center;
+    background-color: $base-colour-inset;
+    border-top: 1px solid $border-colour-top-inset;
+    border-left: 1px solid $border-colour-left-inset;
+    border-bottom: 1px solid $border-colour-bottom-inset;
+    border-right: 1px solid $border-colour-right-inset;
 }
 
 // Tabs
@@ -102,9 +127,7 @@ $default-text-font: "Tahoma";
             border-right: 1px solid $border-colour-right;
             font-size: $default-text-size;
             font-family: $default-text-font;
-
             padding: 5px;
-
             // Move unselected ones down
             height: 25px;
             align-items: center;
@@ -121,14 +144,14 @@ $default-text-font: "Tahoma";
                 height: 27px;
             }
 
-            &:hover { 
-
+            &:hover {
             }
         }
     }
 
 
     > .sheets {
+        overflow: hidden;
         background-color: $base-colour;
         border-top: 1px solid $border-colour-top;
         border-left: 1px solid $border-colour-left;
@@ -297,4 +320,24 @@ $default-text-font: "Tahoma";
 
     &:hover {
     }
+}
+
+// ------------------
+// Layout Elements
+// ------------------
+
+LayoutBoxInset {
+    border-bottom: 1px solid $border-colour-bottom-inset;
+    border-right: 1px solid $border-colour-right-inset;
+    border-top: 1px solid $border-colour-top-inset;
+    border-left: 1px solid $border-colour-left-inset;
+    background-color: $base-colour-inset;
+}
+
+LayoutBox {
+    background-color: $base-colour;
+    border-top: 1px solid $border-colour-top;
+    border-left: 1px solid $border-colour-left;
+    border-bottom: 1px solid $border-colour-bottom;
+    border-right: 1px solid $border-colour-right;
 }

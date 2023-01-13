@@ -113,8 +113,8 @@ public partial class Window : Panel
 	public void Drag()
 	{
 		if ( !Dragging ) return;
-		Position.x = ((FindRootPanel().MousePosition.x) - xoff);
-		Position.y = ((FindRootPanel().MousePosition.y) - yoff);
+		Position.x = ((Parent.MousePosition.x) - xoff);
+		Position.y = ((Parent.MousePosition.y) - yoff);
 	}
 	public void DragBarDown()
 	{
