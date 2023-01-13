@@ -12,8 +12,8 @@ public class Resizer : Panel
 		base.OnMouseDown( e );
 
 		dragging = true;
-		xoff = (float)((FindRootPanel().MousePosition.x) - Box.Rect.Right);
-		yoff = (float)((FindRootPanel().MousePosition.y) - Box.Rect.Bottom);
+		xoff = (float)((FindRootPanel().MousePosition.x) - Parent.Box.Rect.Right);
+		yoff = (float)((FindRootPanel().MousePosition.y) - Parent.Box.Rect.Bottom);
 	}
 	protected override void OnMouseUp( MousePanelEvent e )
 	{
