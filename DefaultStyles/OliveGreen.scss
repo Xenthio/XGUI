@@ -4,6 +4,7 @@
 
 $base-colour: rgba(76,88,68,255);
 $base-colour-inset: #3e4637;
+$base-colour-active: #958831;
 
 $border-colour-top: #889180;
 $border-colour-left: #889180;
@@ -23,6 +24,8 @@ $default-text-size: 13px;
 $default-text-font: "Tahoma";
 
 $window-title-icon: url("Code/XGUI/Resources/icon_steam.png");
+$window-minimise-button: url("Code/XGUI/Resources/icon_minimize.png");
+$window-maximise-button: url("Code/XGUI/Resources/icon_maximize.png");
 $window-close-button: url("Code/XGUI/Resources/icon_close.png");
 $window-resize-icon: url("Code/XGUI/Resources/icon_resizer.png");
 
@@ -30,7 +33,7 @@ $window-resize-icon: url("Code/XGUI/Resources/icon_resizer.png");
     overflow: hidden;
     color: $default-text-colour;
     font-size: $default-text-size;
-    font-family: $default-text-font;
+    font-family: $default-text-font; 
     padding: 4px;
     border-top: 1px solid $border-colour-top;
     border-left: 1px solid $border-colour-left;
@@ -40,6 +43,7 @@ $window-resize-icon: url("Code/XGUI/Resources/icon_resizer.png");
 
 
     .TitleBar {
+
         .TitleIcon {
             width: 16px;
             height: 16px;
@@ -53,22 +57,38 @@ $window-resize-icon: url("Code/XGUI/Resources/icon_resizer.png");
         }
 
         .Control {
+            margin: 2px;
+            margin-top: 3px;
             padding: 0;
+            margin-left: 0px;
+
             width: 18px;
             height: 18px;
-        }
-
-        .CloseButton {
-            background-image: $window-close-button;
-            background-repeat: no-repeat;
-            background-position: right center;
-            background-size: 16px;
-            color: rgba(0,0,0,0);
+            background-position-x: 2px;
+            background-position-y: 1px;
 
             &:active {
                 background-position-x: 3px;
                 background-position-y: 2px;
             }
+        }
+
+        .MinimiseButton {
+            background-image: $window-minimise-button;
+            background-size: 15px;
+            color: rgba(0,0,0,0);
+        }
+
+        .MaximiseButton {
+            background-image: $window-maximise-button;
+            background-size: 15px;
+            color: rgba(0,0,0,0);
+        }
+
+        .CloseButton {
+            background-image: $window-close-button;
+            background-size: 16px;
+            color: rgba(0,0,0,0);
         }
     }
 
@@ -149,6 +169,52 @@ $window-resize-icon: url("Code/XGUI/Resources/icon_resizer.png");
                 z-index: 10;
                 border-bottom: 0px;
                 height: 27px;
+            }
+
+            &:hover {
+            }
+        }
+    }
+
+
+    > .sheets {
+        overflow: hidden;
+        background-color: $base-colour;
+        border-top: 1px solid $border-colour-top;
+        border-left: 1px solid $border-colour-left;
+        border-bottom: 1px solid $border-colour-bottom;
+        border-right: 1px solid $border-colour-right;
+        padding: 5px;
+    }
+}
+
+// Sidebar
+
+.Sidebar {
+
+    > .tabs {
+        padding-left: 6px;
+        padding-right: 3px;
+        background-color: $base-colour-inset;
+        border-top: 1px solid $border-colour-top-inset;
+        border-left: 1px solid $border-colour-left-inset;
+        border-bottom: 1px solid $border-colour-top-inset;
+        border-right: 1px solid $border-colour-right-inset;
+
+        > .button {
+            background-color: $base-colour-inset;
+            border: 0px;
+            font-size: $default-text-size;
+            font-family: $default-text-font;
+            height: 20px;
+
+            &.active {
+                padding: 5px;
+                background-color: $base-colour-active;
+            }
+
+            &:active {
+                padding: 5px;
             }
 
             &:hover {

@@ -7,10 +7,11 @@ public class Resizer : Panel
 
 		AddClass( "Resizer" );
 	}
-	bool draggingR;
-	bool draggingL;
-	bool draggingT;
-	bool draggingB;
+	bool draggingR = false;
+	bool draggingL = false;
+	bool draggingT = false;
+	bool draggingB = false;
+
 	protected override void OnMouseDown( MousePanelEvent e )
 	{
 		base.OnMouseDown( e );
