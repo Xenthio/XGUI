@@ -21,13 +21,13 @@ $border-colour-right-inset: #889180;
 $default-text-colour: #FFFFFF;
 $default-text-colour-active: #c4b550;
 $default-text-size: 13px;
-$default-text-font: "Tahoma";
+$default-text-font: Tahoma;
 
-$window-title-icon: url("Code/XGUI/Resources/icon_steam.png");
-$window-minimise-button: url("Code/XGUI/Resources/icon_minimize.png");
-$window-maximise-button: url("Code/XGUI/Resources/icon_maximize.png");
-$window-close-button: url("Code/XGUI/Resources/icon_close.png");
-$window-resize-icon: url("Code/XGUI/Resources/icon_resizer.png");
+$window-title-icon: url("XGUI/Resources/icon_steam.png");
+$window-minimise-button: url("XGUI/Resources/icon_minimize.png");
+$window-maximise-button: url("XGUI/Resources/icon_maximize.png");
+$window-close-button: url("XGUI/Resources/icon_close.png");
+$window-resize-icon: url("XGUI/Resources/icon_resizer.png");
 
 .Window {
     overflow: hidden;
