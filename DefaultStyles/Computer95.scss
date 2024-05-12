@@ -25,6 +25,7 @@ $border-colour-right-outer-inset: #FFFFFF;
 
 $default-text-size: 12px;
 $default-text-font: "Microsoft Sans Serif";
+$default-text-smooth: never;
 
 $default-text-colour: #000000;
 $default-text-colour-alt: #FFFFFF;
@@ -41,6 +42,7 @@ $default-text-colour-alt: #FFFFFF;
     background-color: $base-colour;
     font-size: $default-text-size;
     font-family: $default-text-font;
+    font-smooth: $default-text-smooth;
 
     .TitleBar {
         align-items: center;

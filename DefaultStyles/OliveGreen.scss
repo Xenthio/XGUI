@@ -22,6 +22,7 @@ $default-text-colour: #FFFFFF;
 $default-text-colour-active: #c4b550;
 $default-text-size: 13px;
 $default-text-font: Tahoma;
+$default-text-smooth: never;
 
 $window-title-icon: url("XGUI/Resources/icon_steam.png");
 $window-minimise-button: url("XGUI/Resources/icon_minimize.png");
@@ -33,7 +34,8 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
     overflow: hidden;
     color: $default-text-colour;
     font-size: $default-text-size;
-    font-family: $default-text-font; 
+    font-family: $default-text-font;
+    font-smooth: $default-text-smooth;
     padding: 4px;
     border-top: 1px solid $border-colour-top;
     border-left: 1px solid $border-colour-left;
@@ -61,14 +63,13 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
             margin-top: 3px;
             padding: 0;
             margin-left: 0px;
-
             width: 18px;
             height: 18px;
-            background-position-x: 2px;
+            background-position-x: 1px;
             background-position-y: 1px;
 
             &:active {
-                background-position-x: 3px;
+                background-position-x: 2px;
                 background-position-y: 2px;
             }
         }
@@ -93,7 +94,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
     }
 
     .Resizer {
-        cursor: pointer;
+        cursor: nwse-resize;
         width: 16px;
         height: 16px;
         background-image: $window-resize-icon;
@@ -153,6 +154,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
             border-right: 1px solid $border-colour-right;
             font-size: $default-text-size;
             font-family: $default-text-font;
+            font-smooth: $default-text-smooth;
             padding: 5px;
             // Move unselected ones down
             height: 25px;
@@ -166,7 +168,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
                 color: $default-text-colour-active;
                 // Offset up when selected
                 top: 1px;
-                z-index: 10;
+                z-index: 5;
                 border-bottom: 0px;
                 height: 27px;
             }
@@ -177,7 +179,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
     }
 
 
-    > .sheets {
+    > .sheets { 
         overflow: hidden;
         background-color: $base-colour;
         border-top: 1px solid $border-colour-top;
@@ -185,6 +187,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
         border-bottom: 1px solid $border-colour-bottom;
         border-right: 1px solid $border-colour-right;
         padding: 5px;
+        z-index: -5;
     }
 }
 
@@ -206,6 +209,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
             border: 0px;
             font-size: $default-text-size;
             font-family: $default-text-font;
+            font-smooth: $default-text-smooth;
             height: 20px;
 
             &.active {
@@ -332,12 +336,12 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
         width: 15px;
         height: 15px;
         border: 1px solid rgba(103,100,88,255);
-        border-radius: 1px;
+        border-radius: 3px;
         margin-right: 8px;
         color: white;
 
         .checklabel {
-            transform: translate(-3 -5);
+            transform: translate(-4 -4);
             font-family: Webdings;
             font-size: 22px;
             color: transparent;
@@ -346,6 +350,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
 
     .label {
         margin-right: 10px;
+        bottom: 1px;
         color: #cfd6ca;
     }
 
@@ -353,7 +358,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
         padding: 1px;
         font-size: 14px;
         //border: 3px solid $primary;
-        border-radius: 2px;
+        border-radius: 3px;
         text-align: center;
         justify-content: center;
         align-items: center;

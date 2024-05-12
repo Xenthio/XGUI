@@ -136,8 +136,9 @@ public partial class Window : Panel
 		Style.Left = Position.x * ScaleFromScreen;
 		Style.Top = Position.y * ScaleFromScreen;
 
+		Style.ZIndex = (Parent.ChildrenCount - Parent.GetChildIndex( this )) * 10;
+		if ( this.HasFocus ) Log.Info( Style.ZIndex );
 
-		Style.ZIndex = Parent.ChildrenCount - Parent.GetChildIndex( this );
 	}
 
 	// -------------
