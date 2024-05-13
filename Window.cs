@@ -139,7 +139,6 @@ public partial class Window : Panel
 		Style.ZIndex = (Parent.ChildrenCount - Parent.GetChildIndex( this )) * 10;
 
 		SetClass( "unfocused", !this.HasFocus );
-		if ( this.HasFocus ) Log.Info( Style.ZIndex );
 
 	}
 
