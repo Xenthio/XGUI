@@ -1,6 +1,6 @@
 ﻿using Sandbox.UI;
 namespace XGUI;
-public class XGUIRootPanel : RootPanel
+public class XGUIRootPanel : Panel
 {
 	public static XGUIRootPanel Current;
 
@@ -9,17 +9,19 @@ public class XGUIRootPanel : RootPanel
 		Current = this;
 		Style.Width = Length.Percent( 100 );
 		Style.Height = Length.Percent( 100 );
+		XGUIRootPanel.Current.AddChild<SimpleTest>();
+		XGUIRootPanel.Current.AddChild<realfakeconsole>();
+		XGUIRootPanel.Current.AddChild<panelselector>();
 	}
 
 	public override void Tick()
 	{
 		base.Tick();
 	}
-
-	protected override void UpdateScale( Rect screenSize )
+	/*protected override void UpdateScale( Rect screenSize )
 	{
 		Scale = 1;
 		if ( screenSize.Width > 1920 ) Scale = 1.50f;
 		if ( screenSize.Width > 2200 ) Scale = 2.00f;
-	}
+	}*/
 }

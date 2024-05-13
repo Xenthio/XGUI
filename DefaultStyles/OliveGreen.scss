@@ -43,6 +43,21 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
     border-right: 1px solid $border-colour-right;
     background-color: $base-colour;
 
+    &.unfocused {
+        .TitleBar {
+            .TitleIcon {
+                opacity: 0.24;
+            }
+
+            .TitleLabel {
+                opacity: 0.24; 
+            }
+
+            .Control {
+                border-color: transparent;
+            }
+        }
+    }
 
     .TitleBar {
 

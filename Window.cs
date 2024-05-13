@@ -137,6 +137,8 @@ public partial class Window : Panel
 		Style.Top = Position.y * ScaleFromScreen;
 
 		Style.ZIndex = (Parent.ChildrenCount - Parent.GetChildIndex( this )) * 10;
+
+		SetClass( "unfocused", !this.HasFocus );
 		if ( this.HasFocus ) Log.Info( Style.ZIndex );
 
 	}
