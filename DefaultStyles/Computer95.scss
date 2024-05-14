@@ -23,7 +23,7 @@ $border-colour-left-outer-inset: #808080;
 $border-colour-bottom-outer-inset: #FFFFFF;
 $border-colour-right-outer-inset: #FFFFFF;
 
-$default-text-size: 12px;
+$default-text-size: 11px;
 $default-text-font: "Microsoft Sans Serif";
 $default-text-smooth: never;
 
@@ -42,6 +42,12 @@ $default-text-colour-alt: #FFFFFF;
     font-size: $default-text-size;
     font-family: $default-text-font;
     font-smooth: $default-text-smooth;
+
+    &.unfocused {
+        .TitleBar {
+            background-color: #808080;
+        }
+    }
 
     .TitleBar {
         margin-bottom: 4px;
@@ -64,15 +70,21 @@ $default-text-colour-alt: #FFFFFF;
         }
 
         .TitleLabel {
+            font-weight: bold;
             padding: 4px;
+            padding-top: 5px;
         }
 
         .Control {
-            width: 16px;
-            height: 14px;
+            padding-top: 0px;
+            padding-left: 2px;
+            width: 15px;
+            height: 13px;
             align-items: center;
             justify-content: center;
             color: $default-text-colour;
+            font-family: Marlett;
+            font-size: 11px;
         }
 
         .CloseButton {
@@ -84,13 +96,17 @@ $default-text-colour-alt: #FFFFFF;
 //
 
 .Button {
-    height: 23px;
+    height: 22px;
+    margin-bottom: 1px;
+    margin-right: 1px;
+    padding-top: 3px;
     align-items: center;
     justify-content: center;
-    border-top: 2px solid $border-colour-top;
-    border-left: 2px solid $border-colour-left;
-    border-bottom: 2px solid $border-colour-bottom;
-    border-right: 2px solid $border-colour-right;
+    border-top: 1px solid $border-colour-top;
+    border-left: 1px solid $border-colour-left;
+    border-bottom: 1px solid $border-colour-bottom;
+    border-right: 1px solid $border-colour-right;
+    box-shadow: 1px 1px black;
     background-color: $base-colour;
 
     &:active {
@@ -99,4 +115,4 @@ $default-text-colour-alt: #FFFFFF;
         border-bottom: 1px solid $border-colour-bottom-inset;
         border-right: 1px solid $border-colour-right-inset;
     }
-}
+} 

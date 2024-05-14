@@ -103,13 +103,13 @@ public partial class Window : Panel
 
 
 		ControlsMinimise.AddEventListener( "onclick", Minimise );
-		ControlsMinimise.Text = "_";
+		ControlsMinimise.Text = "0";
 
 		ControlsMaximise.AddEventListener( "onclick", Maximise );
-		ControlsMaximise.Text = "[]";
+		ControlsMaximise.Text = "1";
 
 		ControlsClose.AddEventListener( "onclick", Close );
-		ControlsClose.Text = "X";
+		ControlsClose.Text = "r";
 
 	}
 
