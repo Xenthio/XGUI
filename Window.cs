@@ -11,6 +11,7 @@ public partial class Window : Panel
 	public Panel TitleSpacer { get; set; } = new Panel();
 
 	public Vector2 Position;
+	public Vector2 Size;
 	public int ZIndex;
 
 	public bool HasControls = true;
@@ -89,6 +90,7 @@ public partial class Window : Panel
 		TitleBar.AddChild( TitleIcon );
 		TitleBar.AddChild( TitleLabel );
 		TitleBar.AddChild( TitleSpacer );
+		TitleBar.Style.ZIndex = 100;
 		if ( HasMinimise ) TitleBar.AddChild( ControlsMinimise );
 		if ( HasMaximise ) TitleBar.AddChild( ControlsMaximise );
 		if ( HasClose ) TitleBar.AddChild( ControlsClose );
@@ -110,12 +112,64 @@ public partial class Window : Panel
 		ControlsClose.Text = "X";
 
 	}
+
+	bool Minimised = false;
+	Vector2 PreMinimisedSize;
+	Vector2 PreMinimisedPos;
 	public void Minimise()
 	{
+		if ( !Minimised )
+		{
+			PreMinimisedSize = Box.Rect.Size;
+
+			PreMinimisedPos = Position;
+
+			Position.x = 0;
+
+			var newheight = TitleBar.Box.Rect.Size.y + ((TitleBar.Box.Rect.Position.y - Box.Rect.Position.y) * 2);
+			Log.Info( newheight );
+			Position.y = Parent.Box.Rect.Size.y - newheight;
+
+			Style.Height = newheight;
+			Style.Width = 128;
+			Minimised = true;
+		}
+		else
+		{
+			Minimised = false;
+			Style.Width = PreMinimisedSize.x;
+			Style.Height = PreMinimisedSize.y;
+
+			Position = PreMinimisedPos;
+		}
 		Log.Info( "minimise" );
 	}
+
+	bool Maximised = false;
+	Vector2 PreMaximisedSize;
+	Vector2 PreMaximisedPos;
 	public void Maximise()
 	{
+		if ( !Maximised )
+		{
+			PreMaximisedSize = Box.Rect.Size;
+
+			PreMaximisedPos = Position;
+
+			Position = 0;
+
+			Style.Height = Parent.Box.Rect.Size.y;
+			Style.Width = Parent.Box.Rect.Size.x;
+			Maximised = true;
+		}
+		else
+		{
+			Maximised = false;
+			Style.Width = PreMaximisedSize.x;
+			Style.Height = PreMaximisedSize.y;
+
+			Position = PreMaximisedPos;
+		}
 		Log.Info( "maximise" );
 	}
 	public void Close()

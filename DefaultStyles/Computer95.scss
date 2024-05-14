@@ -38,18 +38,19 @@ $default-text-colour-alt: #FFFFFF;
     border-left: 1px solid $border-colour-left;
     border-bottom: 1px solid $border-colour-bottom;
     border-right: 1px solid $border-colour-right;
-
     background-color: $base-colour;
     font-size: $default-text-size;
     font-family: $default-text-font;
     font-smooth: $default-text-smooth;
 
     .TitleBar {
+        margin-bottom: 4px;
         align-items: center;
         height: 18px;
         padding: 2px;
         background-color: #000080;
         color: $default-text-colour-alt;
+        flex-shrink: 0;
 
         .TitleSpacer {
             padding: 10px;
