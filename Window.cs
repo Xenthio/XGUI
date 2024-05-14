@@ -1,4 +1,4 @@
-﻿using Sandbox;
+using Sandbox;
 using Sandbox.UI;
 using System.Linq;
 namespace XGUI;
@@ -213,6 +213,8 @@ public partial class Window : Panel
 		// Window edge to edge snapping
 		foreach ( Window window in Parent.Children.OfType<Window>() )
 		{
+			var snapDistance = 10;
+
 			var window1leftpos = Position.x;
 			var window1rightpos = Position.x + Box.Rect.Size.x;
 			var window1uppos = Position.y;
@@ -225,13 +227,13 @@ public partial class Window : Panel
 
 			if ( !(window1downpos < window2uppos || window1uppos > window2downpos) )
 			{
-				if ( window1leftpos.AlmostEqual( window2rightpos, 10 ) ) Position.x -= window1leftpos - window2rightpos;
-				if ( window1rightpos.AlmostEqual( window2leftpos, 10 ) ) Position.x += window2leftpos - window1rightpos;
+				if ( window1leftpos.AlmostEqual( window2rightpos, snapDistance ) ) Position.x -= window1leftpos - window2rightpos;
+				if ( window1rightpos.AlmostEqual( window2leftpos, snapDistance ) ) Position.x += window2leftpos - window1rightpos;
 			}
 			if ( !(window1rightpos < window2leftpos || window1leftpos > window2rightpos) )
 			{
-				if ( window1uppos.AlmostEqual( window2downpos, 10 ) ) Position.y -= window1uppos - window2downpos;
-				if ( window1downpos.AlmostEqual( window2uppos, 10 ) ) Position.y += window2uppos - window1downpos;
+				if ( window1uppos.AlmostEqual( window2downpos, snapDistance ) ) Position.y -= window1uppos - window2downpos;
+				if ( window1downpos.AlmostEqual( window2uppos, snapDistance ) ) Position.y += window2uppos - window1downpos;
 			}
 		}
 	}
