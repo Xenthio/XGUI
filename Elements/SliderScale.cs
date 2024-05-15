@@ -138,6 +138,7 @@ namespace Sandbox.UI
 
 			if ( name == "value" && float.TryParse( value, out floatValue ) )
 			{
+				Log.Info( floatValue );
 				Value = floatValue;
 				return;
 			}

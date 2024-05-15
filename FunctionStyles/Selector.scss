@@ -1,0 +1,12 @@
+.selector {
+	align-items: center;
+
+	> option {
+		display: none;
+	} 
+}
+
+.pane-panel {
+	position:absolute;
+	flex-direction:column;
+}

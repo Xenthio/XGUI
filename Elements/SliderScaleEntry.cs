@@ -50,12 +50,19 @@
 			TextEntry.Numeric = true;
 			TextEntry.NumberFormat = "0.###";
 
-			TextEntry.Bind( "value", Slider, "Value" );
-
-			Slider.AddEventListener( "value.changed", () => OnValueChanged( Slider.Value ) );
-			TextEntry.AddEventListener( "value.changed", () => OnValueChanged( TextEntry.Text ) );
+			Slider.AddEventListener( "value.changed", () => onSliderChanged( Slider.Value ) );
+			TextEntry.AddEventListener( "value.changed", () => onEntryChanged( TextEntry.Value ) );
 		}
-
+		void onEntryChanged( string value )
+		{
+			Slider.Value = value.ToFloat();
+			OnValueChanged( value );
+		}
+		void onSliderChanged( float value )
+		{
+			TextEntry.Value = value.ToString();
+			OnValueChanged( value );
+		}
 		protected void OnValueChanged( object value )
 		{
 			CreateValueEvent( "value", value );

@@ -32,6 +32,8 @@ $window-maximise-button: url("XGUI/Resources/icon_maximize.png");
 $window-close-button: url("XGUI/Resources/icon_close.png");
 $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
 
+$control-dropdown-arrow: url("XGUI/Resources/icon_down.png");
+
 $gamemenu-logo: url("XGUI/Resources/game_menu.png");
 $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
 .Panel {
@@ -198,6 +200,13 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
     border-left: 1px solid $border-colour-left-inset;
     border-bottom: 1px solid $border-colour-bottom-inset;
     border-right: 1px solid $border-colour-right-inset;
+    .content-label,
+	.prefix-label,
+	.suffix-label,
+	.placeholder
+	{
+        padding:0px;    
+    }
 }
 
 // Tabs
@@ -398,6 +407,12 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
     }
 }
 
+// Info label
+.info {
+    color: $default-text-colour-info;
+    padding: 3px; 
+}
+
 // Checkbox
 .checkbox {
     min-width: 24px;
@@ -473,6 +488,76 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
     &:hover {
     }
 }
+
+// Control Label
+
+.controllabel {
+    > .label {
+        height:24px;
+        align-items:center;
+        color: $default-text-colour-label;
+    }
+
+    &.focus {
+        > .label {
+            color: $default-text-colour-active;
+        }
+    }
+}
+
+// Selector/Dropdown
+
+.selector {
+    border-bottom: 1px solid $border-colour-bottom-inset;
+    border-right: 1px solid $border-colour-right-inset;
+    border-top: 1px solid $border-colour-top-inset;
+    border-left: 1px solid $border-colour-left-inset;
+    background-color: $base-colour-inset;
+    color: $default-text-colour-label;
+    height: 24px;
+
+    &:focus {
+        > .button-label {
+            background-color: $base-colour-active;
+            color: $default-text-colour;
+        }
+    }
+
+    > .selector_indicator {
+        background-image: $control-dropdown-arrow;
+        background-repeat: no-repeat;
+        background-position: right center;
+        font-size: 0px;
+        width: 9px;
+        height: 8px;
+        position: absolute;
+        right: 4px;
+    }
+
+    &:active {
+        padding: 5px;
+    }
+}
+
+// Popup / Pane
+
+.pane-panel {
+    background-color: $base-colour;
+    border-top: 1px solid $border-colour-top;
+    border-left: 1px solid $border-colour-left;
+    border-bottom: 1px solid $border-colour-bottom;
+    border-right: 1px solid $border-colour-right;
+
+    > .button {
+        background-color: $base-colour;
+        border: 0px;
+
+        &:hover {
+            background-color: $base-colour-active;
+        }
+    }
+}
+
 
 // ------------------
 // Layout Elements
