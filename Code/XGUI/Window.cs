@@ -47,8 +47,26 @@ public partial class Window : Panel
 			this.AddEventListener( "onmousedown", ResizeDown );
 			this.AddEventListener( "onmouseup", ResizeUp );
 			this.AddEventListener( "onmousemove", ResizeMove );
+			OverrideButtons();
 		}
 		SetChildIndex( TitleBar, 0 );
+	}
+
+	public void OverrideButtons()
+	{
+		foreach ( Panel button in Descendants.OfType<Button>() )
+		{
+			var focusallowed = button.GetAttribute( "focus", "0" );
+			if ( focusallowed == "1" )
+			{
+				button.AcceptsFocus = true;
+			}
+			var autofocus = button.GetAttribute( "autofocus", "0" );
+			if ( autofocus == "1" )
+			{
+				button.Focus();
+			}
+		}
 	}
 	public void CreateTitleBar()
 	{

@@ -2,7 +2,7 @@
 namespace XGUI;
 public class XGUIRootPanel : Panel
 {
-	public static XGUIRootPanel Current;
+	public static XGUIRootPanel Current = null;
 
 	public XGUIRootPanel()
 	{
@@ -11,6 +11,7 @@ public class XGUIRootPanel : Panel
 		Style.Height = Length.Percent( 100 );
 		Style.PointerEvents = PointerEvents.All;
 		Style.Cursor = "unset";
+		Log.Info( "XGUI Root Panel Initialised." );
 	}
 
 	public override void Tick()

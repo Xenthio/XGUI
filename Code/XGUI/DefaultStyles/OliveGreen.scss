@@ -1,4 +1,4 @@
-﻿//@import "/styles/base.scss";
+//@import "/styles/base.scss";
 //@import "/styles/form.scss";
 @import "/XGUI/FunctionStyles/FunctionStyles.scss";
 
@@ -179,6 +179,7 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
     border-left: 1px solid $border-colour-left;
     border-bottom: 1px solid $border-colour-bottom;
     border-right: 1px solid $border-colour-right;
+    box-shadow: 0px 0px 0px 0px transparent;
 
     &:active {
         padding-top: 6px;
@@ -187,6 +188,10 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
         border-left: 1px solid $border-colour-left-inset;
         border-bottom: 1px solid $border-colour-bottom-inset;
         border-right: 1px solid $border-colour-right-inset;
+    }
+
+    &:focus:not(:active) {
+        box-shadow: 0px 0px 0px 1px black;
     }
 }
 
