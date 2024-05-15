@@ -32,6 +32,7 @@ public partial class Window : Panel
 	public Window()
 	{
 
+		AddClass( "Panel" );
 		AddClass( "Window" );
 		Style.PointerEvents = PointerEvents.All;
 		Style.Position = PositionMode.Absolute;
@@ -42,8 +43,10 @@ public partial class Window : Panel
 		base.OnAfterTreeRender( firstTime );
 		if ( firstTime )
 		{
-
 			CreateTitleBar();
+			this.AddEventListener( "onmousedown", ResizeDown );
+			this.AddEventListener( "onmouseup", ResizeUp );
+			this.AddEventListener( "onmousemove", ResizeMove );
 		}
 		SetChildIndex( TitleBar, 0 );
 	}
@@ -102,11 +105,6 @@ public partial class Window : Panel
 		TitleSpacer.AddEventListener( "onmouseup", DragBarUp );
 		TitleSpacer.AddEventListener( "onmousedrag", Drag );
 		TitleSpacer.Style.FlexGrow = 1;
-
-		this.AddEventListener( "onmousedown", ResizeDown );
-		this.AddEventListener( "onmouseup", ResizeUp );
-		this.AddEventListener( "onmousemove", ResizeMove );
-
 
 		ControlsMinimise.AddEventListener( "onclick", Minimise );
 		ControlsMinimise.Text = "0";
@@ -398,6 +396,18 @@ public partial class Window : Panel
 			case "height":
 				{
 					Style.Height = Length.Parse( value );
+					return;
+				}
+
+
+			case "x":
+				{
+					Position.x = Length.Parse( value ).Value.Value;
+					return;
+				}
+			case "y":
+				{
+					Position.y = Length.Parse( value ).Value.Value;
 					return;
 				}
 

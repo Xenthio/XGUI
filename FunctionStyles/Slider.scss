@@ -1,7 +1,18 @@
-﻿.slider {
+﻿.sliderroot {
+    flex-direction: column;
+    flex-grow: 1;
+
+    > .slidercontainer {
+        flex-direction: row;
+        flex-grow: 1;
+    }
+}
+
+.slider {
     height: 16px;
     align-items: center;
     margin-bottom: 24px;
+    flex-grow:1;
 
     > .thumb {
         z-index: 1;

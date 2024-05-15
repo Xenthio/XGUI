@@ -20,6 +20,8 @@ $border-colour-right-inset: #889180;
 
 $default-text-colour: #FFFFFF;
 $default-text-colour-active: #c4b550;
+$default-text-colour-label: #cfd6ca;
+$default-text-colour-info: #A0AA95;
 $default-text-size: 13px;
 $default-text-font: Tahoma;
 $default-text-smooth: never;
@@ -30,13 +32,53 @@ $window-maximise-button: url("XGUI/Resources/icon_maximize.png");
 $window-close-button: url("XGUI/Resources/icon_close.png");
 $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
 
-.Window {
-    overflow: hidden;
+$gamemenu-logo: url("XGUI/Resources/game_menu.png");
+$gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
+.Panel {
     color: $default-text-colour;
     font-size: $default-text-size;
     font-family: $default-text-font;
     font-smooth: $default-text-smooth;
+}
+.GameMenu {
+    padding-left: 32px;
+    padding-bottom: 8px;
+    color: #C8C8C8;
+    font-size: 15px;
+    font-weight: bold;
+
+    .Button {
+        margin: 4px;
+        padding: 0px;
+        border: 0px;
+        background-color: transparent;
+
+        &:hover {
+            color: #FFFFFF;
+        }
+
+        &:active {
+            margin: 4px;
+            padding: 0px;
+            border: 0px;
+        }
+    }
+
+    .Logo {
+        width: 196px;
+        height: 32px;
+        background-image: $gamemenu-logo;
+        background-position: center;
+
+        &:hover {
+            background-image: $gamemenu-logo-hover;
+        }
+    }
+}
+.Window {
+    overflow: hidden;
     padding: 4px;
+    color: $default-text-colour;
     border-top: 1px solid $border-colour-top;
     border-left: 1px solid $border-colour-left;
     border-bottom: 1px solid $border-colour-bottom;
@@ -60,7 +102,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
     }
 
     .TitleBar {
-        margin-bottom: 4px;
+        margin-bottom: 1px;
         background-color: $base-colour;
         flex-shrink: 0;
 
@@ -239,6 +281,10 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
                 padding: 5px;
             }
 
+            &:focus {
+                box-shadow: 1px 1px black;
+            }
+
             &:hover {
             }
         }
@@ -258,6 +304,16 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
 
 // Slider
 
+.sliderroot {
+    > .label {
+        height: 20px;
+        color: $default-text-colour-label;
+
+        &.focus {
+            color: $default-text-colour-active;
+        }
+    }
+}
 .slider { 
     margin-right:8px;
     > .thumb { 
@@ -323,7 +379,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
     > .slider {
     }
 
-    > .textentry:not( .one.two ) {
+    .textentry:not( .one.two ) {
         border-bottom: 1px solid $border-colour-bottom-inset;
         border-right: 1px solid $border-colour-right-inset;
         border-top: 1px solid $border-colour-top-inset;
@@ -336,7 +392,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
         min-width: 48px;
         width: 48px;
         height: 24px;
-        overflow: hidden;
+        overflow: hidden; 
         margin-left: 16px; 
         font-size: 13px;
     }
@@ -369,7 +425,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
     .label {
         margin-right: 10px;
         bottom: 1px;
-        color: #cfd6ca;
+        color: $default-text-colour-label;
     }
 
     > .checkmark {

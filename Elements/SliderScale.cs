@@ -1,211 +1,235 @@
 ﻿using Sandbox.UI.Construct;
 using System;
-using System.Linq;
 
 namespace Sandbox.UI
 {
-    /// <summary>
-    /// A horizontal slider. Can be float or whole number.
-    /// </summary>
-    public class SliderScale : Panel
-    {
-        public Panel Track { get; protected set; }
-        public Panel TrackInner { get; protected set; }
-        public Panel Thumb { get; protected set; }
-        public Panel ScaleSteps { get; protected set; }
-        public Label ScaleStepsMin { get; protected set; }
-        public Label ScaleStepsMax { get; protected set; }
+	/// <summary>
+	/// A horizontal slider. Can be float or whole number.
+	/// </summary>
+	public class SliderScale : Panel
+	{
+		public Panel SliderArea { get; protected set; }
+		public Panel SliderControl { get; protected set; }
+		public Panel Track { get; protected set; }
+		public Panel TrackInner { get; protected set; }
+		public Panel Thumb { get; protected set; }
+		public Panel ScaleSteps { get; protected set; }
+		public Label ScaleStepsMin { get; protected set; }
+		public Label ScaleStepsMax { get; protected set; }
+		public Label Label { get; protected set; }
 
-        /// <summary>
-        /// The right side of the slider
-        /// </summary>
-        public float MaxValue { get; set; } = 100;
+		/// <summary>
+		/// The right side of the slider
+		/// </summary>
+		public float MaxValue { get; set; } = 100;
 
-        /// <summary>
-        /// The left side of the slider
-        /// </summary>
-        public float MinValue { get; set; } = 0;
+		/// <summary>
+		/// The left side of the slider
+		/// </summary>
+		public float MinValue { get; set; } = 0;
 
-        /// <summary>
-        /// If set to 1, value will be rounded to 1's
-        /// If set to 10, value will be rounded to 10's
-        /// If set to 0.1, value will be rounded to 0.1's
-        /// </summary>
-        public float Step { get; set; } = 1.0f;
+		/// <summary>
+		/// If set to 1, value will be rounded to 1's
+		/// If set to 10, value will be rounded to 10's
+		/// If set to 0.1, value will be rounded to 0.1's
+		/// </summary>
+		public float Step { get; set; } = 1.0f;
 
-        public SliderScale()
-        {
-            AddClass("slider");
+		public SliderScale()
+		{
+			AddClass( "sliderroot" );
 
-            Track = Add.Panel("track");
-            TrackInner = Track.Add.Panel("inner");
+			Label = AddChild<Label>();
+			Label.Style.Display = DisplayMode.None;
+			Label.AcceptsFocus = true;
+			SliderArea = AddChild<Panel>();
+			SliderArea.AddClass( "sliderarea" );
 
-            Thumb = Add.Panel("thumb");
+			SliderControl = SliderArea.AddChild<Panel>();
+			SliderControl.AcceptsFocus = true;
+			SliderControl.AddClass( "slider" );
 
-            ScaleSteps = Add.Panel("scalesteps");
-            ScaleSteps.Add.Panel("step");
-            ScaleSteps.Add.Panel("step");
-            ScaleSteps.Add.Panel("step");
-            ScaleSteps.Add.Panel("step");
-            ScaleSteps.Add.Panel("step");
-            ScaleSteps.Add.Panel("step");
-            ScaleSteps.Add.Panel("step");
-            ScaleSteps.Add.Panel("step");
-            ScaleSteps.Add.Panel("step");
-            ScaleSteps.Add.Panel("step");
+			Track = SliderControl.Add.Panel( "track" );
+			TrackInner = Track.Add.Panel( "inner" );
 
-            ScaleStepsMin = Add.Label("", "scalestepmin");
-            ScaleStepsMax = Add.Label("", "scalestepmax");
-        }
+			Thumb = SliderControl.Add.Panel( "thumb" );
 
-        protected float _value = float.MaxValue;
+			ScaleSteps = SliderControl.Add.Panel( "scalesteps" );
+			ScaleSteps.Add.Panel( "step" );
+			ScaleSteps.Add.Panel( "step" );
+			ScaleSteps.Add.Panel( "step" );
+			ScaleSteps.Add.Panel( "step" );
+			ScaleSteps.Add.Panel( "step" );
+			ScaleSteps.Add.Panel( "step" );
+			ScaleSteps.Add.Panel( "step" );
+			ScaleSteps.Add.Panel( "step" );
+			ScaleSteps.Add.Panel( "step" );
+			ScaleSteps.Add.Panel( "step" );
 
-        /// <summary>
-        /// The actual value. Setting the value will snap and clamp it.
-        /// </summary>
-        public float Value
-        {
-            get => _value.Clamp(MinValue, MaxValue);
-            set
-            {
-                var snapped = Step > 0 ? value.SnapToGrid(Step) : value;
-                snapped = snapped.Clamp(MinValue, MaxValue);
+			ScaleStepsMin = SliderControl.Add.Label( "", "scalestepmin" );
+			ScaleStepsMax = SliderControl.Add.Label( "", "scalestepmax" );
+		}
+		public override void Tick()
+		{
+			base.Tick();
+			Label.SetClass( "focus", SliderControl.HasFocus || Thumb.HasFocus || Label.HasFocus );
 
-                if (_value == snapped) return;
+		}
+		protected float _value = float.MaxValue;
 
-                _value = snapped;
+		/// <summary>
+		/// The actual value. Setting the value will snap and clamp it.
+		/// </summary>
+		public float Value
+		{
+			get => _value.Clamp( MinValue, MaxValue );
+			set
+			{
+				var snapped = Step > 0 ? value.SnapToGrid( Step ) : value;
+				snapped = snapped.Clamp( MinValue, MaxValue );
 
-                CreateEvent("onchange");
-                CreateValueEvent("value", _value);
-                UpdateSliderPositions();
-            }
-        }
+				if ( _value == snapped ) return;
 
-        public override void SetProperty(string name, string value)
-        {
-            if (name == "min" && float.TryParse(value, out var floatValue))
-            {
-                MinValue = floatValue;
-                ScaleStepsMin.Text = floatValue.ToString();
-                UpdateSliderPositions();
-                return;
-            }
+				_value = snapped;
 
-            if (name == "step" && float.TryParse(value, out floatValue))
-            {
-                Step = floatValue;
-                UpdateSliderPositions();
-                return;
-            }
+				CreateEvent( "onchange" );
+				CreateValueEvent( "value", _value );
+				UpdateSliderPositions();
+			}
+		}
 
-            if (name == "max" && float.TryParse(value, out floatValue))
-            {
-                MaxValue = floatValue;
-                UpdateSliderPositions();
-                return;
-            }
+		public override void SetProperty( string name, string value )
+		{
+			if ( name == "min" && float.TryParse( value, out var floatValue ) )
+			{
+				MinValue = floatValue;
+				ScaleStepsMin.Text = floatValue.ToString();
+				UpdateSliderPositions();
+				return;
+			}
 
-            if (name == "mintext")
-            {
-                ScaleStepsMin.Text = value;
-                UpdateSliderPositions();
-                return;
-            }
+			if ( name == "step" && float.TryParse( value, out floatValue ) )
+			{
+				Step = floatValue;
+				UpdateSliderPositions();
+				return;
+			}
 
-            if (name == "maxtext")
-            {
-                ScaleStepsMax.Text = value;
-                UpdateSliderPositions();
-                return;
-            }
+			if ( name == "max" && float.TryParse( value, out floatValue ) )
+			{
+				MaxValue = floatValue;
+				UpdateSliderPositions();
+				return;
+			}
 
-            if (name == "value" && float.TryParse(value, out floatValue))
-            {
-                Value = floatValue;
-                return;
-            }
+			if ( name == "mintext" )
+			{
+				ScaleStepsMin.Text = value;
+				UpdateSliderPositions();
+				return;
+			}
 
-            base.SetProperty(name, value);
-        }
+			if ( name == "maxtext" )
+			{
+				ScaleStepsMax.Text = value;
+				UpdateSliderPositions();
+				return;
+			}
 
-        /// <summary>
-        /// Convert a screen position to a value. The value is clamped, but not snapped.
-        /// </summary>
-        public virtual float ScreenPosToValue(Vector2 pos)
-        {
-            var localPos = ScreenPositionToPanelPosition(pos);
-            var thumbSize = Thumb.Box.Rect.Width * 0.5f;
-            var normalized = MathX.LerpInverse(localPos.x, thumbSize, Box.Rect.Width - thumbSize, true);
-            var scaled = MathX.LerpTo(MinValue, MaxValue, normalized, true);
-            return Step > 0 ? scaled.SnapToGrid(Step) : scaled;
-        }
+			if ( name == "value" && float.TryParse( value, out floatValue ) )
+			{
+				Value = floatValue;
+				return;
+			}
 
-        /// <summary>
-        /// If we move the mouse while we're being pressed then set the position,
-        /// but skip transitions.
-        /// </summary>
-        protected override void OnMouseMove(MousePanelEvent e)
-        {
-            base.OnMouseMove(e);
 
-            if (!HasActive) return;
+			if ( name == "label" )
+			{
+				Label.Style.Display = DisplayMode.Flex;
+				Label.Text = value;
+				return;
+			}
+			base.SetProperty( name, value );
+		}
 
-            Value = ScreenPosToValue(Mouse.Position);
-            UpdateSliderPositions();
-            SkipTransitions();
-            e.StopPropagation();
-        }
+		/// <summary>
+		/// Convert a screen position to a value. The value is clamped, but not snapped.
+		/// </summary>
+		public virtual float ScreenPosToValue( Vector2 pos )
+		{
+			var localPos = SliderControl.ScreenPositionToPanelPosition( pos );
+			var thumbSize = Thumb.Box.Rect.Width * 0.5f;
+			var normalized = MathX.LerpInverse( localPos.x, thumbSize, SliderControl.Box.Rect.Width - thumbSize, true );
+			var scaled = MathX.LerpTo( MinValue, MaxValue, normalized, true );
+			return Step > 0 ? scaled.SnapToGrid( Step ) : scaled;
+		}
 
-        /// <summary>
-        /// On mouse press jump to that position
-        /// </summary>
-        protected override void OnMouseDown(MousePanelEvent e)
-        {
-            base.OnMouseDown(e);
+		/// <summary>
+		/// If we move the mouse while we're being pressed then set the position,
+		/// but skip transitions.
+		/// </summary>
+		protected override void OnMouseMove( MousePanelEvent e )
+		{
+			base.OnMouseMove( e );
 
-            Value = ScreenPosToValue(Mouse.Position);
-            UpdateSliderPositions();
-            e.StopPropagation();
-        }
+			if ( !HasActive ) return;
 
-        int positionHash;
+			Value = ScreenPosToValue( Mouse.Position );
+			UpdateSliderPositions();
+			SkipTransitions();
+			e.StopPropagation();
+		}
 
-        /// <summary>
-        /// Updates the styles for TrackInner and Thumb to position us based on the current value.
-        /// Note this purposely uses percentages instead of pixels when setting up, this way we don't
-        /// have to worry about parent size, screen scale etc.
-        /// </summary>
-        void UpdateSliderPositions()
-        {
-            var hash = HashCode.Combine(Value, MinValue, MaxValue);
-            if (hash == positionHash) return;
+		/// <summary>
+		/// On mouse press jump to that position
+		/// </summary>
+		protected override void OnMouseDown( MousePanelEvent e )
+		{
+			base.OnMouseDown( e );
 
-            positionHash = hash;
+			Value = ScreenPosToValue( Mouse.Position );
+			UpdateSliderPositions();
+			e.StopPropagation();
+		}
 
-            var pos = MathX.LerpInverse(Value, MinValue, MaxValue, true);
+		int positionHash;
 
-            TrackInner.Style.Width = Length.Fraction(pos);
-            Thumb.Style.Left = Length.Fraction(pos);
+		/// <summary>
+		/// Updates the styles for TrackInner and Thumb to position us based on the current value.
+		/// Note this purposely uses percentages instead of pixels when setting up, this way we don't
+		/// have to worry about parent size, screen scale etc.
+		/// </summary>
+		void UpdateSliderPositions()
+		{
+			var hash = HashCode.Combine( Value, MinValue, MaxValue );
+			if ( hash == positionHash ) return;
 
-            TrackInner.Style.Dirty();
-            Thumb.Style.Dirty();
-        }
+			positionHash = hash;
 
-    }
+			var pos = MathX.LerpInverse( Value, MinValue, MaxValue, true );
 
-    namespace Construct
-    {
-        public static class SliderScaleConstructor
-        {
-            public static SliderScale SliderScale(this PanelCreator self, float min, float max, float step, string mintext, string maxtext)
-            {
-                var control = self.panel.AddChild<SliderScale>();
-                control.MinValue = min;
-                control.MaxValue = max;
-                control.Step = step;
+			TrackInner.Style.Width = Length.Fraction( pos );
+			Thumb.Style.Left = Length.Fraction( pos );
 
-                return control;
-            }
-        }
-    }
+			TrackInner.Style.Dirty();
+			Thumb.Style.Dirty();
+		}
+
+	}
+
+	namespace Construct
+	{
+		public static class SliderScaleConstructor
+		{
+			public static SliderScale SliderScale( this PanelCreator self, float min, float max, float step, string mintext, string maxtext )
+			{
+				var control = self.panel.AddChild<SliderScale>();
+				control.MinValue = min;
+				control.MaxValue = max;
+				control.Step = step;
+
+				return control;
+			}
+		}
+	}
 }
