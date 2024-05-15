@@ -11,7 +11,6 @@ public class XGUIRootPanel : Panel
 		Style.Height = Length.Percent( 100 );
 		Style.PointerEvents = PointerEvents.All;
 		Style.Cursor = "unset";
-		XGUIRootPanel.Current.AddChild<MenuTest>();
 	}
 
 	public override void Tick()

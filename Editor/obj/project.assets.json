@@ -1,0 +1,128 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "Base Editor Library/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Base Editor Library.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Base Editor Library.dll": {}
+        }
+      },
+      "Base Library/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Base Library.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Base Library.dll": {}
+        }
+      },
+      "xgui/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Base Library": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/xgui.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/xgui.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Base Editor Library/1.0.0": {
+      "type": "project",
+      "path": "../../../../../SteamLibrary/steamapps/common/sbox/addons/tools/Code/Base Editor Library.csproj",
+      "msbuildProject": "../../../../../SteamLibrary/steamapps/common/sbox/addons/tools/Code/Base Editor Library.csproj"
+    },
+    "Base Library/1.0.0": {
+      "type": "project",
+      "path": "../../../../../SteamLibrary/steamapps/common/sbox/addons/base/Code/Base Library.csproj",
+      "msbuildProject": "../../../../../SteamLibrary/steamapps/common/sbox/addons/base/Code/Base Library.csproj"
+    },
+    "xgui/1.0.0": {
+      "type": "project",
+      "path": "../Code/xgui.csproj",
+      "msbuildProject": "../Code/xgui.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "Base Editor Library >= 1.0.0",
+      "xgui >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\thego\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "E:\\S&box Addons\\xgui_test\\Libraries\\XGUI\\Editor\\xgui.editor.csproj",
+      "projectName": "xgui.editor",
+      "projectPath": "E:\\S&box Addons\\xgui_test\\Libraries\\XGUI\\Editor\\xgui.editor.csproj",
+      "packagesPath": "C:\\Users\\thego\\.nuget\\packages\\",
+      "outputPath": "E:\\S&box Addons\\xgui_test\\Libraries\\XGUI\\Editor\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\thego\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {
+            "E:\\S&box Addons\\xgui_test\\Libraries\\XGUI\\Code\\xgui.csproj": {
+              "projectPath": "E:\\S&box Addons\\xgui_test\\Libraries\\XGUI\\Code\\xgui.csproj"
+            },
+            "E:\\SteamLibrary\\steamapps\\common\\sbox\\addons\\tools\\Code\\Base Editor Library.csproj": {
+              "projectPath": "E:\\SteamLibrary\\steamapps\\common\\sbox\\addons\\tools\\Code\\Base Editor Library.csproj"
+            }
+          }
+        }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
