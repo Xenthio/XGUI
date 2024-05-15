@@ -12,6 +12,8 @@ public partial class Window : Panel
 
 	public Vector2 Position;
 	public Vector2 Size;
+	public Vector2 MinSize = new Vector2();
+
 	public int ZIndex;
 
 	public bool HasControls = true;
@@ -100,6 +102,10 @@ public partial class Window : Panel
 		TitleSpacer.AddEventListener( "onmouseup", DragBarUp );
 		TitleSpacer.AddEventListener( "onmousedrag", Drag );
 		TitleSpacer.Style.FlexGrow = 1;
+
+		this.AddEventListener( "onmousedown", ResizeDown );
+		this.AddEventListener( "onmouseup", ResizeUp );
+		this.AddEventListener( "onmousemove", ResizeMove );
 
 
 		ControlsMinimise.AddEventListener( "onclick", Minimise );
@@ -267,8 +273,97 @@ public partial class Window : Panel
 		base.OnMouseDown( e );
 	}
 	// -------------
+	// Resizing
+	// ------------- 
+	internal bool draggingR = false;
+	internal bool draggingL = false;
+	internal bool draggingT = false;
+	internal bool draggingB = false;
+
+	public void ResizeDown()
+	{
+		var Distance = 5;
+		var mousePos = FindRootPanel().MousePosition;
+		if ( mousePos.y.AlmostEqual( this.Box.Rect.Bottom, Distance ) ) draggingB = true;
+		if ( mousePos.x.AlmostEqual( this.Box.Rect.Right, Distance ) ) draggingR = true;
+		if ( mousePos.y.AlmostEqual( this.Box.Rect.Top, Distance ) ) draggingT = true;
+		if ( mousePos.x.AlmostEqual( this.Box.Rect.Left, Distance ) ) draggingL = true;
+		//draggingT = true;
+		//draggingL = true;
+		xoff1 = (float)((FindRootPanel().MousePosition.x) - this.Box.Rect.Right);
+		yoff1 = (float)((FindRootPanel().MousePosition.y) - this.Box.Rect.Bottom);
+		xoff2 = (float)((FindRootPanel().MousePosition.x) - this.Box.Rect.Left);
+		yoff2 = (float)((FindRootPanel().MousePosition.y) - this.Box.Rect.Top);
+	}
+	public void ResizeUp()
+	{
+		draggingB = false;
+		draggingR = false;
+		draggingT = false;
+		draggingL = false;
+	}
+	internal float xoff1 = 0;
+	internal float yoff1 = 0;
+	internal float xoff2 = 0;
+	internal float yoff2 = 0;
+	public void ResizeMove()
+	{
+		var Distance = 5;
+		var mousePos = FindRootPanel().MousePosition;
+
+		if ( mousePos.y.AlmostEqual( this.Box.Rect.Bottom, Distance ) || draggingB ) Style.Cursor = "move";
+		else if ( mousePos.x.AlmostEqual( this.Box.Rect.Right, Distance ) || draggingR ) Style.Cursor = "move";
+		else if ( mousePos.y.AlmostEqual( this.Box.Rect.Top, Distance ) || draggingT ) Style.Cursor = "move";
+		else if ( mousePos.x.AlmostEqual( this.Box.Rect.Left, Distance ) || draggingL ) Style.Cursor = "move";
+		else Style.Cursor = "unset";
+
+		/*if ( Mouse )
+		{
+			ResizeUp( e );
+		}*/
+
+		if ( draggingB )
+		{
+			//Parent.Style.Width = (FindRootPanel().MousePosition.x - Parent.Box.Rect.Left) - xoff;
+			var newheight = (FindRootPanel().MousePosition.y - Box.Rect.Top) - yoff1;
+			if ( newheight > MinSize.y )
+			{
+				Style.Height = newheight;
+			}
+		}
+
+		if ( draggingR )
+		{
+			var newwidth = (FindRootPanel().MousePosition.x - Box.Rect.Left) - xoff1;
+			if ( newwidth > MinSize.x )
+			{
+				Style.Width = newwidth;
+			}
+			//Parent.Style.Height = (FindRootPanel().MousePosition.y - Parent.Box.Rect.Top) - yoff;
+		}
+		if ( draggingT )
+		{
+			var newheight = Box.Rect.Height - ((FindRootPanel().MousePosition.y - yoff2) - Box.Rect.Top);
+			if ( newheight > MinSize.y )
+			{
+				Style.Height = newheight;
+				Position.y = FindRootPanel().MousePosition.y - yoff2;
+			}
+		}
+
+		if ( draggingL )
+		{
+			var newwidth = Box.Rect.Width - ((FindRootPanel().MousePosition.x - xoff2) - Box.Rect.Left);
+			if ( newwidth > MinSize.x )
+			{
+				Style.Width = newwidth;
+				Position.x = FindRootPanel().MousePosition.x - xoff2;
+			}
+		}
 
 
+	}
+	// -------------
 	public override void SetProperty( string name, string value )
 	{
 		switch ( name )
@@ -309,12 +404,12 @@ public partial class Window : Panel
 
 			case "minwidth":
 				{
-					Style.MinWidth = Length.Parse( value );
+					MinSize.x = Length.Parse( value ).Value.Value;
 					return;
 				}
 			case "minheight":
 				{
-					Style.MinHeight = Length.Parse( value );
+					MinSize.y = Length.Parse( value ).Value.Value;
 					return;
 				}
 		}

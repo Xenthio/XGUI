@@ -41,7 +41,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
     border-left: 1px solid $border-colour-left;
     border-bottom: 1px solid $border-colour-bottom;
     border-right: 1px solid $border-colour-right;
-    background-color: $base-colour; 
+    background-color: $base-colour;
 
     &.unfocused {
         .TitleBar {
@@ -60,7 +60,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
     }
 
     .TitleBar {
-        margin-bottom:4px;
+        margin-bottom: 4px;
         background-color: $base-colour;
         flex-shrink: 0;
 
@@ -112,7 +112,7 @@ $window-resize-icon: url("XGUI/Resources/icon_resizer.png");
     }
 
     .Resizer {
-        cursor: nwse-resize;
+        cursor: move;
         width: 16px;
         height: 16px;
         background-image: $window-resize-icon;

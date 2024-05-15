@@ -9,6 +9,8 @@ public class XGUIRootPanel : Panel
 		Current = this;
 		Style.Width = Length.Percent( 100 );
 		Style.Height = Length.Percent( 100 );
+		Style.PointerEvents = PointerEvents.All;
+		Style.Cursor = "unset";
 		XGUIRootPanel.Current.AddChild<SimpleTest>();
 		XGUIRootPanel.Current.AddChild<realfakeconsole>();
 		XGUIRootPanel.Current.AddChild<panelselector>();
