@@ -15,6 +15,7 @@ public class XGUIRootPanel : Panel
 
 	public override void Tick()
 	{
+		Current = this;
 		base.Tick();
 	}
 	/*protected override void UpdateScale( Rect screenSize )

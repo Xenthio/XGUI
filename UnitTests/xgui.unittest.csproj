@@ -42,7 +42,7 @@
   <PropertyGroup>
 	<OutputPath>E:\SteamLibrary\steamapps\common\sbox/.vs/output/</OutputPath>
 	<DocumentationFile>E:\SteamLibrary\steamapps\common\sbox/.vs/output/xgui.unittest.xml</DocumentationFile>
-	<RootNamespace>Sandbox</RootNamespace>
+	<RootNamespace>XGUI</RootNamespace>
 	<Nullable>disable</Nullable>
   </PropertyGroup>
 

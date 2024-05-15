@@ -1,0 +1,5 @@
+
+*.vtex_c
+*.vmat_c
+/Editor/obj
+/UnitTests/obj/Debug
