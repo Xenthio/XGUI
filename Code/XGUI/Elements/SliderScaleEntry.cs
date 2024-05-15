@@ -1,4 +1,8 @@
-﻿namespace Sandbox.UI
+﻿
+using Sandbox;
+using Sandbox.UI;
+using Sandbox.UI.Construct;
+namespace XGUI
 {
 	/// <summary>
 	/// A horizontal slider with a text entry on the right

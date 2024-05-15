@@ -1,7 +1,8 @@
-﻿using Sandbox.UI.Construct;
+﻿using Sandbox;
+using Sandbox.UI;
+using Sandbox.UI.Construct;
 using System;
-
-namespace Sandbox.UI
+namespace XGUI
 {
 	/// <summary>
 	/// A horizontal slider. Can be float or whole number.
