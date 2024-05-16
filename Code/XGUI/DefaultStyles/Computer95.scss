@@ -3,6 +3,7 @@
 
 $base-colour: #C0C0C0;
 $base-colour-inset: #FFFFFF;
+$base-colour-active: #00047C;
 
 $border-colour-control-pushed: #808080;
 $border-colour-top: #DFDFDF;
@@ -343,6 +344,25 @@ $outer-boxshadow-tab: 1px 0px 0px 0px $border-colour-right-outer, -1px 0px 0px 0
     &:active {
         padding: 0px;
         padding-top: 3px;
+    }
+}
+
+// Popup / Pane
+
+.pane-panel {
+    background-color: $base-colour-inset;
+    border: 1px solid black;
+
+    > .button {
+        background-color: $base-colour-inset;
+        border: 0px;
+        box-shadow: 0px 0px 0px transparent;
+        height: 13px;
+
+        &:hover {
+            color:white;
+            background-color: $base-colour-active;
+        }
     }
 }
 
