@@ -98,7 +98,6 @@ public class Selector : Button
 	public Selector()
 	{
 		AddClass( "selector" );
-		AcceptsFocus = true;
 		DropdownIndicator = Add.Icon( "u", "selector_indicator" );
 	}
 

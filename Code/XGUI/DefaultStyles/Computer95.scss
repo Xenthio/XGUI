@@ -4,6 +4,7 @@
 $base-colour: #C0C0C0;
 $base-colour-inset: #FFFFFF;
 
+$border-colour-control-pushed: #808080;
 $border-colour-top: #DFDFDF;
 $border-colour-left: #DFDFDF;
 $border-colour-bottom: #808080;
@@ -120,7 +121,7 @@ $outer-boxshadow-tab: 1px 0px 0px 0px $border-colour-right-outer, -1px 0px 0px 0
 //
 
 .Button {
-    height: 22px;
+    height: 19px;
     margin-bottom: 1px;
     margin-right: 1px;
     padding-top: 3px;
@@ -139,6 +140,15 @@ $outer-boxshadow-tab: 1px 0px 0px 0px $border-colour-right-outer, -1px 0px 0px 0
         border-bottom: 1px solid $border-colour-bottom-inset;
         border-right: 1px solid $border-colour-right-inset;
         box-shadow: $outer-boxshadow-inset;
+
+        &:focus, &.focus {
+            border: 0px;
+            box-shadow: 0px 0px 0px 2px black, 0px 0px 0px 1px $border-colour-control-pushed;
+        }
+    }
+
+    &:focus, &.focus {
+        box-shadow: 0px 0px 0px 2px black, $outer-boxshadow;
     }
 }
 
@@ -248,7 +258,35 @@ $outer-boxshadow-tab: 1px 0px 0px 0px $border-colour-right-outer, -1px 0px 0px 0
         }
     }
 }
+// Slider
 
+.sliderroot {
+    > .label {
+        height: 20px;  
+    }
+}
+.slider {
+    margin-right: 8px;
+
+    > .thumb {
+        background-color: $base-colour;
+        border-top: 1px solid $border-colour-top;
+        border-left: 1px solid $border-colour-left;
+        border-bottom: 1px solid $border-colour-bottom;
+        border-right: 1px solid $border-colour-right;
+        box-shadow: $outer-boxshadow;
+    }
+
+    > .track {
+        height: 2px;
+        border-top: 1px solid $border-colour-top-inset;
+        border-left: 1px solid $border-colour-left-inset;
+        border-bottom: 1px solid $border-colour-bottom-inset;
+        border-right: 1px solid $border-colour-right-inset;
+        background-color: $base-colour-inset;
+        box-shadow: $outer-boxshadow-inset;
+    }
+}
 // Selector/Dropdown
 
 .selector {
