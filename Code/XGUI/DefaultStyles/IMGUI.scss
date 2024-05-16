@@ -3,9 +3,14 @@
 
 $base-colour: #0F0F0FEF;
 $title-colour: #28497AFF;
-$border-colour: rgba(0.50, 0.50, 0.50, 0.50);
+$header-colour: #4296F9CC;
+$header-active-colour: #4296F94F;
+$border-colour: #6D6D7F7F;
 $frame-colour: #6D6D6D63;
 $button-colour: #4296F966;
+$button-active-colour: #0F87F9FF;
+$element-colour: #4296F9FF;
+$frame-background-colour: #28497A89;
 
 $default-text-colour: #FFFFFF;
 $default-text-size: 13px;
@@ -36,34 +41,155 @@ $window-title-icon: url("XGUI/Resources/icon_down.png");
         width: 16px;
         font-family: Marlett;
         font-size: 8px;
-        background-color:transparent;
+        background-color: transparent;
         border: none;
     }
 
     .TitleIcon {
-        width: 10px;
-        height: 10px;
+        width: 17px;
+        height: 17px;
         background-image: $window-title-icon;
-        background-size: cover;
-        margin-top: 4px;
-        margin-right: 16px;
+        margin-right: 8px;
+        background-repeat: no-repeat;
+        background-position: center; 
     }
 }
-button { 
+button {
     color: white;
-    align-items:center;
-    justify-content:center;
-    border: 1px solid $border-colour;
+    align-items: center;
+    justify-content: center;
     background-color: $button-colour;
-    height:19px;
+    height: 19px;
+
+    &:active, &.active {
+        background-color: $button-active-colour;
+    }
+}
+
+// checkbox
+
+.checkbox {
+
+    .checkpanel, iconpanel {
+        width: 19px;
+        height: 19px;
+        background-color: $frame-background-colour;
+        align-items: center;
+        justify-content: center;
+    }
+
+    >.label {
+        margin-left: 5px;
+    }
+
+
+    &.checked {
+
+        > .checkpanel, .iconpanel {
+            .checklabel {
+                font-family: Marlett;
+                font-size: 22px;
+                color: $element-colour;
+            }
+        }
+
+        > .checkmark {
+            color: $element-colour;
+            background-color: transparent;
+        }
+    }
+}
+
+// selector
+
+.selector {
+    background-color: $frame-background-colour;
+    height: 19px;
+    justify-content: flex-start;
+
+    > .label {
+        padding: 5px;
+    }
+
+    > .selector_indicator {
+        padding:0px;
+        background-color: $element-colour;
+        background-repeat: no-repeat;
+        background-position: right center;
+        width: 15px;
+        height: 16px;
+        position: absolute;
+        top: 1px;
+        right: 0px;
+        font-family: Marlett;
+        font-size: 15px;
+    }
 
     &:active {
-        color: yellow;
-        border: 1px solid yellow;
+        padding: 0px;
+        padding-top: 3px;
+    }
+}
+
+// tabs
+
+.TabContainer {
+    flex-direction: column;
+
+    > .tabs {
+
+        > .button {
+            justify-content: flex-start;
+            padding-left: 5px;
+            margin-left: 4px;
+            margin-top: 1px;
+            background-color: $header-active-colour;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            height: 17px;
+            min-width: 73px;
+
+            &:active, &.active {
+                background-color: $header-colour;
+            }
+
+            &:hover {
+            }
+        }
     }
 
-    &.active {
-        color: yellow;
-        border: 1px solid yellow;
+
+    > .sheets {
+        overflow: hidden;
+        border-top: 1px solid $header-colour;
     }
-} 
+}
+
+// Slider
+
+.sliderroot {
+    > .label {
+        height: 20px;
+    }
+}
+
+.slider {
+
+    > .thumb {
+        background-color: $element-colour;
+        width: 12px;
+        height: 15px;
+    }
+
+    > .track {
+        height: 19px;
+        background-color: $frame-background-colour;
+    }
+
+    > .scalesteps {
+
+        > .step {
+            display:none;
+        }
+    }
+}
