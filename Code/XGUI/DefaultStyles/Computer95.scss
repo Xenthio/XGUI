@@ -110,6 +110,21 @@ $outer-boxshadow-tab: 1px 0px 0px 0px $border-colour-right-outer, -1px 0px 0px 0
             font-family: Marlett;
             font-size: 10;
             margin-left: 1px;
+
+            &:active {
+                padding-top: 2px;
+                padding-left: 2px;
+                border-top: 1px solid $border-colour-top-inset;
+                border-left: 1px solid $border-colour-left-inset;
+                border-bottom: 1px solid $border-colour-bottom-inset;
+                border-right: 1px solid $border-colour-right-inset;
+                box-shadow: $outer-boxshadow-inset;
+
+                &:focus, &.focus {
+                    border: 0px;
+                    box-shadow: 0px 0px 0px 2px black, 0px 0px 0px 1px $border-colour-control-pushed;
+                }
+            }
         }
 
         .CloseButton {
@@ -125,6 +140,7 @@ $outer-boxshadow-tab: 1px 0px 0px 0px $border-colour-right-outer, -1px 0px 0px 0
     margin-bottom: 1px;
     margin-right: 1px;
     padding-top: 3px;
+    padding-left: 0px;
     align-items: center;
     justify-content: center;
     border-top: 1px solid $border-colour-top;
@@ -135,6 +151,8 @@ $outer-boxshadow-tab: 1px 0px 0px 0px $border-colour-right-outer, -1px 0px 0px 0
     background-color: $base-colour;
 
     &:active {
+        padding-top: 4px;
+        padding-left: 1.5px;
         border-top: 1px solid $border-colour-top-inset;
         border-left: 1px solid $border-colour-left-inset;
         border-bottom: 1px solid $border-colour-bottom-inset;
@@ -189,9 +207,12 @@ $outer-boxshadow-tab: 1px 0px 0px 0px $border-colour-right-outer, -1px 0px 0px 0
             margin-right: 2px;
             box-shadow: $outer-boxshadow-tab;
             z-index: 0;
-
+            &:active {
+                padding-top: 2px;
+                padding-left: 0px;
+            }
             &.active {
-                padding-top: 0px;
+                padding-top: 0px; 
                 color: $default-text-colour-active;
                 // Offset up when selected
                 top: 2px;
