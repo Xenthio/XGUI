@@ -190,7 +190,7 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
         border-right: 1px solid $border-colour-right-inset;
     }
 
-    &:focus:not(:active) {
+    &:focus:not(:active), &.focus:not(:active) {
         box-shadow: 0px 0px 0px 1px black;
     }
 }
@@ -526,6 +526,10 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
             background-color: $base-colour-active;
             color: $default-text-colour;
         }
+    }
+
+    &:focus:not(:active), &.focus:not(:active) {
+        box-shadow: 0px 0px 0px 0px transparent;
     }
 
     > .selector_indicator {

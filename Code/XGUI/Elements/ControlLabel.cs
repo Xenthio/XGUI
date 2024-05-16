@@ -15,7 +15,11 @@ public class ControlLabel : Panel
 	public override void Tick()
 	{
 		base.Tick();
-		SetClass( "focus", HasFocus || Children.Where( x => x.HasFocus ).Any() || Children.OfType<Selector>().Where( x => x.IsOpen ).Any() );
+		SetClass( "focus", PanelHasFocus( this ) || Children.Where( x => PanelHasFocus( x ) ).Any() || Children.OfType<Selector>().Where( x => x.IsOpen ).Any() );
+	}
+	public bool PanelHasFocus( Panel panel )
+	{
+		return panel.HasFocus || panel.HasClass( "focus" );
 	}
 	public override void SetProperty( string name, string value )
 	{

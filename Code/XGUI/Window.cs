@@ -68,6 +68,20 @@ public partial class Window : Panel
 			}
 		}
 	}
+	Panel LastFocus;
+	public void FocusUpdate()
+	{
+		if ( InputFocus.Current == null || InputFocus.Current is Window ) return;
+		if ( InputFocus.Current != LastFocus )
+		{
+			if ( LastFocus != null )
+			{
+				LastFocus.SetClass( "focus", false );
+			}
+			LastFocus = InputFocus.Current;
+			LastFocus.SetClass( "focus", true );
+		}
+	}
 	public void CreateTitleBar()
 	{
 		/*
@@ -217,7 +231,7 @@ public partial class Window : Panel
 		Style.ZIndex = (Parent.ChildrenCount - Parent.GetChildIndex( this )) * 10;
 
 		SetClass( "unfocused", !this.HasFocus );
-
+		FocusUpdate();
 	}
 
 	// -------------
