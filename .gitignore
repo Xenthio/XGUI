@@ -3,3 +3,5 @@
 *.vmat_c
 /Editor/obj
 /UnitTests/obj/Debug
+/Editor/obj
+/UnitTests/obj
