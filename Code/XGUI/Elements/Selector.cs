@@ -99,7 +99,7 @@ public class Selector : Button
 	{
 		AddClass( "selector" );
 		AcceptsFocus = true;
-		DropdownIndicator = Add.Icon( "expand_more", "selector_indicator" );
+		DropdownIndicator = Add.Icon( "u", "selector_indicator" );
 	}
 
 	public Selector( Panel parent ) : this()
