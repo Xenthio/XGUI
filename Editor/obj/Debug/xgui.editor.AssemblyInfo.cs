@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("xgui.editor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8750b606df29c202a82068d92404a5f2c2c26ccd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f25d0e4fd6fc4c9d9efa8198a72d4dbb630531b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("xgui.editor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("xgui.editor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
