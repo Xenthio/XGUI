@@ -45,7 +45,11 @@ public class XGUIDesigner : DockWindow
 
 		//CreateNew();
 	}
-
+	protected override bool OnClose()
+	{
+		_view.Destroy();
+		return base.OnClose();
+	}
 	public void CreateUI()
 	{
 		BuildMenuBar();
