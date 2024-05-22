@@ -312,6 +312,7 @@ public partial class Window : Panel
 
 	public void ResizeDown()
 	{
+		// TODO FIXME: Don't resize if were dragging a window by the title bar!!
 		var Distance = 5;
 		var mousePos = FindRootPanel().MousePosition;
 		if ( mousePos.y.AlmostEqual( this.Box.Rect.Bottom, Distance ) ) draggingB = true;
