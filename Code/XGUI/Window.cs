@@ -51,7 +51,8 @@ public partial class Window : Panel
 		}
 		SetChildIndex( TitleBar, 0 );
 	}
-
+	
+	// theres no way by default to make buttons focusable so hack it in
 	public void OverrideButtons()
 	{
 		foreach ( Panel button in Descendants.OfType<Button>() )
@@ -82,6 +83,7 @@ public partial class Window : Panel
 			LastFocus.SetClass( "focus", true );
 		}
 	}
+
 	public void CreateTitleBar()
 	{
 		/*
