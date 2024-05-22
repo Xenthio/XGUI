@@ -307,9 +307,12 @@ public partial class Window : Panel
 		//Parent.SortChildren( x => x.HasFocus ? 1 : 0 );
 		base.OnMouseDown( e );
 	}
+
 	// -------------
 	// Resizing
 	// ------------- 
+	// I feel like everything about resizing sucks.
+
 	internal bool draggingR = false;
 	internal bool draggingL = false;
 	internal bool draggingT = false;
