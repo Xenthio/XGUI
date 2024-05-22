@@ -353,6 +353,8 @@ public partial class Window : Panel
 			ResizeUp( e );
 		}*/
 
+		// This sucks.
+
 		if ( draggingB )
 		{
 			//Parent.Style.Width = (FindRootPanel().MousePosition.x - Parent.Box.Rect.Left) - xoff;
