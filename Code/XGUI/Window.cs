@@ -138,6 +138,9 @@ public partial class Window : Panel
 		TitleSpacer.AddEventListener( "onmousedrag", Drag );
 		TitleSpacer.Style.FlexGrow = 1;
 
+		// The "0", "1" and "r" are for the marlett/webdings font
+		// Ideally i want these to be set from the theming CSS space
+		// but unfortunately s&box does not support the css content property
 		ControlsMinimise.AddEventListener( "onclick", Minimise );
 		ControlsMinimise.Text = "0";
 
