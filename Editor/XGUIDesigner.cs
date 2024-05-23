@@ -47,7 +47,7 @@ public class XGUIDesigner : DockWindow
 	}
 	protected override bool OnClose()
 	{
-		_view.Destroy();
+		_view.CleanUp();
 		return base.OnClose();
 	}
 	public void CreateUI()

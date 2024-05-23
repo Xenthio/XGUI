@@ -59,11 +59,9 @@ public class XGUIView : NativeRenderingWidget
 		Camera.AntiAliasing = false;
 	}
 
-	public override void OnDestroyed()
+	public void CleanUp()
 	{
-		Window.Delete();
-		panel.Delete();
-		rootpanel.Delete();
 		base.OnDestroyed();
+		rootpanel.Delete();
 	}
 }
