@@ -51,7 +51,8 @@ public partial class Window : Panel
 		}
 		SetChildIndex( TitleBar, 0 );
 	}
-
+	
+	// theres no way by default to make buttons focusable so hack it in
 	public void OverrideButtons()
 	{
 		foreach ( Panel button in Descendants.OfType<Button>() )
@@ -82,6 +83,7 @@ public partial class Window : Panel
 			LastFocus.SetClass( "focus", true );
 		}
 	}
+
 	public void CreateTitleBar()
 	{
 		/*
@@ -138,6 +140,9 @@ public partial class Window : Panel
 		TitleSpacer.AddEventListener( "onmousedrag", Drag );
 		TitleSpacer.Style.FlexGrow = 1;
 
+		// The "0", "1" and "r" are for the marlett/webdings font
+		// Ideally i want these to be set from the theming CSS space
+		// but unfortunately s&box does not support the css content property
 		ControlsMinimise.AddEventListener( "onclick", Minimise );
 		ControlsMinimise.Text = "0";
 
@@ -302,9 +307,12 @@ public partial class Window : Panel
 		//Parent.SortChildren( x => x.HasFocus ? 1 : 0 );
 		base.OnMouseDown( e );
 	}
+
 	// -------------
 	// Resizing
 	// ------------- 
+	// I feel like everything about resizing sucks.
+
 	internal bool draggingR = false;
 	internal bool draggingL = false;
 	internal bool draggingT = false;
@@ -312,6 +320,7 @@ public partial class Window : Panel
 
 	public void ResizeDown()
 	{
+		// TODO FIXME: Don't resize if were dragging a window by the title bar!!
 		var Distance = 5;
 		var mousePos = FindRootPanel().MousePosition;
 		if ( mousePos.y.AlmostEqual( this.Box.Rect.Bottom, Distance ) ) draggingB = true;
@@ -351,6 +360,8 @@ public partial class Window : Panel
 		{
 			ResizeUp( e );
 		}*/
+
+		// This sucks.
 
 		if ( draggingB )
 		{
