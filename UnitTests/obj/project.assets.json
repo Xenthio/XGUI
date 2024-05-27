@@ -400,9 +400,22 @@
           "bin/placeholder/Base Editor Library.dll": {}
         }
       },
+      "Base Library/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Base Library.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Base Library.dll": {}
+        }
+      },
       "xgui/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Base Library": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/xgui.dll": {}
         },
@@ -1025,6 +1038,11 @@
       "type": "project",
       "path": "../../../../../SteamLibrary/steamapps/common/sbox/addons/tools/Code/Base Editor Library.csproj",
       "msbuildProject": "../../../../../SteamLibrary/steamapps/common/sbox/addons/tools/Code/Base Editor Library.csproj"
+    },
+    "Base Library/1.0.0": {
+      "type": "project",
+      "path": "../../../../../SteamLibrary/steamapps/common/sbox/addons/base/Code/Base Library.csproj",
+      "msbuildProject": "../../../../../SteamLibrary/steamapps/common/sbox/addons/base/Code/Base Library.csproj"
     },
     "xgui/1.0.0": {
       "type": "project",
