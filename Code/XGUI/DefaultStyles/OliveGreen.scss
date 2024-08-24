@@ -155,8 +155,7 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
         }
     }
 
-    .Resizer {
-        cursor: move;
+    .Resizer { 
         width: 16px;
         height: 16px;
         background-image: $window-resize-icon;

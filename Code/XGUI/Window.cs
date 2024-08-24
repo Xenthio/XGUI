@@ -51,7 +51,7 @@ public partial class Window : Panel
 		}
 		SetChildIndex( TitleBar, 0 );
 	}
-	
+
 	// theres no way by default to make buttons focusable so hack it in
 	public void OverrideButtons()
 	{
@@ -222,6 +222,14 @@ public partial class Window : Panel
 	public override void Tick()
 	{
 		base.Tick();
+
+		// Todo - use something nicer that doesn't rely on this being named Attack1
+		if ( Input.Released( "Attack1" ) )
+		{
+			Dragging = false;
+			ResizeUp();
+		}
+
 		Drag();
 
 		if ( Style.Left == null )
@@ -350,10 +358,20 @@ public partial class Window : Panel
 		var Distance = 5;
 		var mousePos = FindRootPanel().MousePosition;
 
-		if ( mousePos.y.AlmostEqual( this.Box.Rect.Bottom, Distance ) || draggingB ) Style.Cursor = "move";
-		else if ( mousePos.x.AlmostEqual( this.Box.Rect.Right, Distance ) || draggingR ) Style.Cursor = "move";
-		else if ( mousePos.y.AlmostEqual( this.Box.Rect.Top, Distance ) || draggingT ) Style.Cursor = "move";
-		else if ( mousePos.x.AlmostEqual( this.Box.Rect.Left, Distance ) || draggingL ) Style.Cursor = "move";
+		var almostbottom = mousePos.y.AlmostEqual( this.Box.Rect.Bottom, Distance );
+		var almostright = mousePos.x.AlmostEqual( this.Box.Rect.Right, Distance );
+		var almosttop = mousePos.y.AlmostEqual( this.Box.Rect.Top, Distance );
+		var almostleft = mousePos.x.AlmostEqual( this.Box.Rect.Left, Distance );
+
+
+		if ( (almostleft && almostbottom) || (draggingL && draggingB) ) Style.Cursor = "nesw-resize";
+		else if ( (almostright && almosttop) || (draggingR && draggingT) ) Style.Cursor = "nesw-resize";
+		else if ( (almostright && almostbottom) || (draggingR && draggingB) ) Style.Cursor = "nwse-resize";
+		else if ( (almostleft && almosttop) || (draggingL && draggingT) ) Style.Cursor = "nwse-resize";
+		else if ( almostbottom || draggingB ) Style.Cursor = "ns-resize";
+		else if ( almostright || draggingR ) Style.Cursor = "ew-resize";
+		else if ( almosttop || draggingT ) Style.Cursor = "ns-resize";
+		else if ( almostleft || draggingL ) Style.Cursor = "ew-resize";
 		else Style.Cursor = "unset";
 
 		/*if ( Mouse )
