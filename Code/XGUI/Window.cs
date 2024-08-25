@@ -328,6 +328,7 @@ public partial class Window : Panel
 
 	public void ResizeDown()
 	{
+		if ( !IsResizable ) return;
 		// TODO FIXME: Don't resize if were dragging a window by the title bar!!
 		var Distance = 5;
 		var mousePos = FindRootPanel().MousePosition;
@@ -355,24 +356,27 @@ public partial class Window : Panel
 	internal float yoff2 = 0;
 	public void ResizeMove()
 	{
-		var Distance = 5;
-		var mousePos = FindRootPanel().MousePosition;
+		if ( IsResizable )
+		{
+			var Distance = 5;
+			var mousePos = FindRootPanel().MousePosition;
 
-		var almostbottom = mousePos.y.AlmostEqual( this.Box.Rect.Bottom, Distance );
-		var almostright = mousePos.x.AlmostEqual( this.Box.Rect.Right, Distance );
-		var almosttop = mousePos.y.AlmostEqual( this.Box.Rect.Top, Distance );
-		var almostleft = mousePos.x.AlmostEqual( this.Box.Rect.Left, Distance );
+			var almostbottom = mousePos.y.AlmostEqual( this.Box.Rect.Bottom, Distance );
+			var almostright = mousePos.x.AlmostEqual( this.Box.Rect.Right, Distance );
+			var almosttop = mousePos.y.AlmostEqual( this.Box.Rect.Top, Distance );
+			var almostleft = mousePos.x.AlmostEqual( this.Box.Rect.Left, Distance );
 
 
-		if ( (almostleft && almostbottom) || (draggingL && draggingB) ) Style.Cursor = "nesw-resize";
-		else if ( (almostright && almosttop) || (draggingR && draggingT) ) Style.Cursor = "nesw-resize";
-		else if ( (almostright && almostbottom) || (draggingR && draggingB) ) Style.Cursor = "nwse-resize";
-		else if ( (almostleft && almosttop) || (draggingL && draggingT) ) Style.Cursor = "nwse-resize";
-		else if ( almostbottom || draggingB ) Style.Cursor = "ns-resize";
-		else if ( almostright || draggingR ) Style.Cursor = "ew-resize";
-		else if ( almosttop || draggingT ) Style.Cursor = "ns-resize";
-		else if ( almostleft || draggingL ) Style.Cursor = "ew-resize";
-		else Style.Cursor = "unset";
+			if ( (almostleft && almostbottom) || (draggingL && draggingB) ) Style.Cursor = "nesw-resize";
+			else if ( (almostright && almosttop) || (draggingR && draggingT) ) Style.Cursor = "nesw-resize";
+			else if ( (almostright && almostbottom) || (draggingR && draggingB) ) Style.Cursor = "nwse-resize";
+			else if ( (almostleft && almosttop) || (draggingL && draggingT) ) Style.Cursor = "nwse-resize";
+			else if ( almostbottom || draggingB ) Style.Cursor = "ns-resize";
+			else if ( almostright || draggingR ) Style.Cursor = "ew-resize";
+			else if ( almosttop || draggingT ) Style.Cursor = "ns-resize";
+			else if ( almostleft || draggingL ) Style.Cursor = "ew-resize";
+			else Style.Cursor = "unset";
+		}
 
 		/*if ( Mouse )
 		{
@@ -445,6 +449,12 @@ public partial class Window : Panel
 			case "hasclose":
 				{
 					HasClose = bool.Parse( value );
+					return;
+				}
+
+			case "isresizable":
+				{
+					IsResizable = bool.Parse( value );
 					return;
 				}
 
