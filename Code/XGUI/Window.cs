@@ -22,7 +22,8 @@ public partial class Window : Panel
 	public bool HasMaximise = false;
 	public bool HasClose = true;
 
-	public bool IsResizable;
+	public bool IsResizable = true;
+	public bool IsDraggable = true;
 
 	public Button ControlsClose { get; set; } = new Button();
 	public Button ControlsMinimise { get; set; } = new Button();
@@ -288,6 +289,7 @@ public partial class Window : Panel
 	}
 	public void DragBarDown()
 	{
+		if ( !IsDraggable ) return;
 		xoff = (float)((FindRootPanel().MousePosition.x) - Box.Rect.Left);
 		yoff = (float)((FindRootPanel().MousePosition.y) - Box.Rect.Top);
 		Dragging = true;
@@ -455,6 +457,11 @@ public partial class Window : Panel
 			case "isresizable":
 				{
 					IsResizable = bool.Parse( value );
+					return;
+				}
+			case "isdraggable":
+				{
+					IsDraggable = bool.Parse( value );
 					return;
 				}
 
