@@ -248,6 +248,17 @@ public partial class Window : Panel
 		FocusUpdate();
 	}
 
+	Vector2 MousePos()
+	{
+		if ( FindRootPanel().IsWorldPanel && Game.ActiveScene.IsValid() && Game.ActiveScene.IsValid() )
+		{
+			Ray ray = Game.ActiveScene.Camera.ScreenPixelToRay( Mouse.Position );
+			FindRootPanel().RayToLocalPosition( ray, out var pos, out var distance );
+			return pos;
+		}
+		return FindRootPanel().MousePosition;
+	}
+
 	// -------------
 	// Dragging
 	// -------------
@@ -257,8 +268,9 @@ public partial class Window : Panel
 	public void Drag()
 	{
 		if ( !Dragging ) return;
-		Position.x = ((Parent.MousePosition.x) - xoff);
-		Position.y = ((Parent.MousePosition.y) - yoff);
+		var mousePos = MousePos();
+		Position.x = ((mousePos.x) - xoff);
+		Position.y = ((mousePos.y) - yoff);
 
 		// Window edge to edge snapping
 		foreach ( Window window in Parent.Children.OfType<Window>() )
@@ -290,8 +302,10 @@ public partial class Window : Panel
 	public void DragBarDown()
 	{
 		if ( !IsDraggable ) return;
-		xoff = (float)((FindRootPanel().MousePosition.x) - Box.Rect.Left);
-		yoff = (float)((FindRootPanel().MousePosition.y) - Box.Rect.Top);
+
+		var mousePos = MousePos();
+		xoff = (float)((mousePos.x) - Box.Rect.Left);
+		yoff = (float)((mousePos.y) - Box.Rect.Top);
 		Dragging = true;
 	}
 	public void DragBarUp()
@@ -358,10 +372,10 @@ public partial class Window : Panel
 	internal float yoff2 = 0;
 	public void ResizeMove()
 	{
+		var mousePos = MousePos();
 		if ( IsResizable )
 		{
 			var Distance = 5;
-			var mousePos = FindRootPanel().MousePosition;
 
 			var almostbottom = mousePos.y.AlmostEqual( this.Box.Rect.Bottom, Distance );
 			var almostright = mousePos.x.AlmostEqual( this.Box.Rect.Right, Distance );
@@ -390,7 +404,7 @@ public partial class Window : Panel
 		if ( draggingB )
 		{
 			//Parent.Style.Width = (FindRootPanel().MousePosition.x - Parent.Box.Rect.Left) - xoff;
-			var newheight = (FindRootPanel().MousePosition.y - Box.Rect.Top) - yoff1;
+			var newheight = (mousePos.y - Box.Rect.Top) - yoff1;
 			if ( newheight > MinSize.y )
 			{
 				Style.Height = newheight;
@@ -399,7 +413,7 @@ public partial class Window : Panel
 
 		if ( draggingR )
 		{
-			var newwidth = (FindRootPanel().MousePosition.x - Box.Rect.Left) - xoff1;
+			var newwidth = (mousePos.x - Box.Rect.Left) - xoff1;
 			if ( newwidth > MinSize.x )
 			{
 				Style.Width = newwidth;
@@ -408,21 +422,21 @@ public partial class Window : Panel
 		}
 		if ( draggingT )
 		{
-			var newheight = Box.Rect.Height - ((FindRootPanel().MousePosition.y - yoff2) - Box.Rect.Top);
+			var newheight = Box.Rect.Height - ((mousePos.y - yoff2) - Box.Rect.Top);
 			if ( newheight > MinSize.y )
 			{
 				Style.Height = newheight;
-				Position.y = FindRootPanel().MousePosition.y - yoff2;
+				Position.y = mousePos.y - yoff2;
 			}
 		}
 
 		if ( draggingL )
 		{
-			var newwidth = Box.Rect.Width - ((FindRootPanel().MousePosition.x - xoff2) - Box.Rect.Left);
+			var newwidth = Box.Rect.Width - ((mousePos.x - xoff2) - Box.Rect.Left);
 			if ( newwidth > MinSize.x )
 			{
 				Style.Width = newwidth;
-				Position.x = FindRootPanel().MousePosition.x - xoff2;
+				Position.x = mousePos.x - xoff2;
 			}
 		}
 
