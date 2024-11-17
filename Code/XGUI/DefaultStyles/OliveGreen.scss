@@ -578,6 +578,53 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
 }
 
 
+.item-list {
+    padding: 7px;
+    border-bottom: 1px solid $border-colour-bottom-inset;
+    border-right: 1px solid $border-colour-right-inset;
+    border-top: 1px solid $border-colour-top-inset;
+    border-left: 1px solid $border-colour-left-inset;
+    background-color: $base-colour-inset;
+    overflow-y: scroll;
+
+    .item-list-title {
+        height: 24px;
+        border-bottom: 1px solid $border-colour-bottom;
+        align-items: flex-end;
+
+        .label {
+            font-size: 10px;
+            color: $default-text-colour-active;
+            margin-left: 19px;
+            margin-bottom: 4px;
+        }
+
+        margin-bottom: 1px;
+    }
+
+    .item-list-item {
+        height: 20px;
+        min-height: 20px;
+        align-items: center;
+
+        .icon {
+            height: 16px;
+            width: 16px;
+            background-size:contain;
+        }
+
+        .label {
+            align-self: flex-end;
+            margin-left: 4px;
+            margin-bottom: 2px;
+        }
+
+        &:active {
+            background-color: $base-colour-active;
+        }
+    }
+}
+
 // ------------------
 // Layout Elements
 // ------------------
@@ -596,4 +643,11 @@ LayoutBox {
     border-left: 1px solid $border-colour-left;
     border-bottom: 1px solid $border-colour-bottom;
     border-right: 1px solid $border-colour-right;
+}
+
+Seperator {
+    background-color: $border-colour-top-inset;
+    height: 2px;
+    width: 100%;
+    border-bottom: 1px solid $border-colour-bottom-inset;
 }
