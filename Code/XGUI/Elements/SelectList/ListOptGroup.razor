@@ -1,0 +1,16 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using Sandbox.Razor;
+
+@namespace XGUI
+@inherits Panel
+
+<root>
+    <label class="group-title" @ref=_label>@Label</label>
+    @ChildContent
+</root>
+
+@code { 
+    public Label _label { get; set; }
+    public string Label { get; set; } 
+}

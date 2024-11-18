@@ -27,6 +27,10 @@
 		<AdditionalFiles Include="**/*.razor" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="xgui\elements\selectlist\ListOptGroup.razor" />
+	</ItemGroup>
+
 
 
 	<ItemGroup>
@@ -41,7 +45,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<Analyzer Include="E:\SteamLibrary\steamapps\common\sbox\bin\managed\Sandbox.Generator.dll"/>
+		<Analyzer Include="E:\SteamLibrary\steamapps\common\sbox\bin\managed\Sandbox.Generator.dll" />
 		<Reference Include="E:\SteamLibrary\steamapps\common\sbox\bin\managed/Sandbox.System.dll" />
 		<Reference Include="E:\SteamLibrary\steamapps\common\sbox\bin\managed/Sandbox.Engine.dll" />
 		<Reference Include="E:\SteamLibrary\steamapps\common\sbox\bin\managed/Sandbox.Filesystem.dll" />

@@ -247,6 +247,15 @@ public partial class Window : Panel
 		SetClass( "unfocused", !this.HasFocus );
 		FocusUpdate();
 	}
+	public void FocusWindow()
+	{
+		AcceptsFocus = true;
+		if ( !HasFocus )
+		{
+			Focus();
+			Parent.SetChildIndex( this, 0 );
+		}
+	}
 
 	Vector2 MousePos()
 	{
@@ -322,12 +331,8 @@ public partial class Window : Panel
 
 	protected override void OnMouseDown( MousePanelEvent e )
 	{
-		AcceptsFocus = true;
-		if ( !HasFocus )
-		{
-			Focus();
-		}
-		Parent.SetChildIndex( this, 0 );
+		FocusWindow();
+
 		//Parent.SortChildren( x => x.HasFocus ? 1 : 0 );
 		base.OnMouseDown( e );
 	}

@@ -22,6 +22,10 @@ $default-text-colour: #FFFFFF;
 $default-text-colour-active: #c4b550;
 $default-text-colour-label: #cfd6ca;
 $default-text-colour-info: #A0AA95;
+$default-text-colour-standard: #D8DED3;
+$default-text-colour-inactive: #758666;
+$default-text-colour-disabled: #282e22;
+$default-text-colour-disabled-shadow: #889180;
 $default-text-size: 13px;
 $default-text-font: Tahoma;
 $default-text-smooth: never;
@@ -188,7 +192,12 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
         border-bottom: 1px solid $border-colour-bottom-inset;
         border-right: 1px solid $border-colour-right-inset;
     }
-     
+    
+    &.disabled {
+        color: $default-text-colour-disabled;
+        text-shadow: 1px 1px $default-text-colour-disabled-shadow;
+    }
+
     /*
     &:focus, &.focus {
         > .label {
@@ -426,6 +435,21 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
     padding: 3px; 
 }
 
+// Info label
+.info-text {
+    color: $default-text-colour-info;
+}
+
+// Active label
+.active-text {
+    color: $default-text-colour-active;
+}
+
+// Standard label
+.standard-text {
+    color: $default-text-colour-standard;
+}
+
 // Checkbox
 .checkbox {
     min-width: 24px;
@@ -578,31 +602,28 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
 }
 
 
-.item-list {
+selectlist {
     padding: 7px;
     border-bottom: 1px solid $border-colour-bottom-inset;
     border-right: 1px solid $border-colour-right-inset;
     border-top: 1px solid $border-colour-top-inset;
     border-left: 1px solid $border-colour-left-inset;
     background-color: $base-colour-inset;
-    overflow-y: scroll;
 
-    .item-list-title {
-        height: 24px;
-        border-bottom: 1px solid $border-colour-bottom;
-        align-items: flex-end;
-
-        .label {
+    listoptgroup {
+        .group-title {
+            height: 24px;
+            border-bottom: 1px solid $border-colour-bottom;
+            align-items: flex-end;
             font-size: 10px;
             color: $default-text-colour-active;
-            margin-left: 19px;
-            margin-bottom: 4px;
+            padding-left: 19px;
+            padding-bottom: 4px;
+            margin-bottom: 1px;
         }
-
-        margin-bottom: 1px;
     }
 
-    .item-list-item {
+    .listoption {
         height: 20px;
         min-height: 20px;
         align-items: center;
@@ -610,7 +631,7 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
         .icon {
             height: 16px;
             width: 16px;
-            background-size:contain;
+            background-size: contain;
         }
 
         .label {
@@ -619,8 +640,22 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
             margin-bottom: 2px;
         }
 
-        &:active {
+        &.grey {
+            .label {
+                color: $default-text-colour-inactive;
+            }
+
+            .icon {
+                filter: sepia(100%) hue-rotate(55) saturate(220%) brightness(20%);
+            }
+        }
+
+        &.selected {
             background-color: $base-colour-active;
+
+            .label {
+                color: $default-text-colour;
+            }
         }
     }
 }

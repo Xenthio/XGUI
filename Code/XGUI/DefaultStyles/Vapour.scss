@@ -4,7 +4,8 @@
 
 $base-colour: #2A2E33;
 $base-colour-inset: #2A2E33;
-$base-colour-active: #2A2E33;
+$base-colour-active: #193754;
+$base-colour-misc: #33383E;
 
 // Meant to be 48px down but only % values supported by s&box right now
 $base-gradient: linear-gradient(-90deg, #212935, #2A2E33 15%);
@@ -16,6 +17,7 @@ $button-active-gradient: linear-gradient(-90deg, #52596600, #33383E);
 $border-gradient: linear-gradient(-45deg, #193754, #000000);
 $tab-gradient: linear-gradient(-90deg, #4C545D, #2B3035);
 $tab-inactive-gradient: linear-gradient(-90deg, #353A40, #353A40);
+$list-gradient: linear-gradient(-90deg, #222224AA, #16191C);
 
 $border-colour-top: #4C545D;
 $border-colour-left: #4C545D;
@@ -576,6 +578,46 @@ $gamemenu-logo-hover: url("XGUI/Resources/game_menu_mouseover.png");
     }
 }
 
+selectlist {
+    padding: 2px;
+    background-image: $list-gradient;
+
+    listoptgroup {
+        .group-title {
+            background-color: $base-colour-misc;
+            height: 19px; 
+            align-items: flex-end;
+            font-size: 11px;
+            color: $default-text-colour-label;
+            padding-left: 24px;
+            padding-bottom: 2px;
+            margin-bottom: 1px;
+        }
+    }
+
+    .listoption {
+        height: 20px;
+        min-height: 20px;
+        align-items: center;
+        padding-left:4px;
+
+        .icon {
+            height: 16px;
+            width: 16px;
+            background-size: contain;
+        }
+
+        .label {
+            align-self: flex-end;
+            margin-left: 4px;
+            margin-bottom: 2px;
+        }
+
+        &.selected {
+            background-color: $base-colour-active;
+        }
+    }
+}
 
 // ------------------
 // Layout Elements
