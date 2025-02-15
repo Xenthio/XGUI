@@ -251,10 +251,8 @@ public partial class Window : Panel
 	{
 		AcceptsFocus = true;
 		if ( !HasFocus )
-		{
 			Focus();
-			Parent.SetChildIndex( this, 0 );
-		}
+		Parent.SetChildIndex( this, 0 );
 	}
 
 	Vector2 MousePos()
